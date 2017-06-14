@@ -1,0 +1,38 @@
+{
+  "name": "Banner Base",
+  "version": "1.0.0",
+  "title": "Banner Base",
+  "client": "Banner List",
+  "description": "banners",
+  "main": "",
+  "scripts": {
+    "build": "gulp distribute"
+  },
+  "author": "cmadrigal@omnicomhealthgroup.com",
+  "devDependencies": {
+    "browser-sync": "^2.12.10",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
+    "gulp-dom": "^0.9.17",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-processhtml": "^1.1.0",
+    "gulp-pug": "^3.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sequence": "^0.4.5",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-zip": "^3.2.0",
+    "imagemin": "^5.2.1",
+    "imagemin-jpeg-recompress": "^5.0.0",
+    "imagemin-jpegoptim": "^5.0.0",
+    "imagemin-optipng": "^5.1.0",
+    "imagemin-pngquant": "^5.0.0",
+    "imagemin-svgo": "^5.1.0",
+    "merge-stream": "^1.0.0"
+  }
+}

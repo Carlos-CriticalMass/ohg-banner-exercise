@@ -44,6 +44,7 @@ App_banner.fn.init = function() {
      */
     this.preload([], this.display.bind(this));
   }
+  IDsToVars();
 };
 
 /**
@@ -63,7 +64,7 @@ App_banner.fn.display = function() {
  * Display the given step
  *
  */
-App_banner.fn.goTo = function(stepNumber) { 
+App_banner.fn.goTo = function(stepNumber) {
   this.steps.each(function(i, el) {
     var $el = $(el);
 
@@ -114,8 +115,8 @@ App_banner.fn.step1 = function() {
       isi1        = $('#isi'),
       isiMain     = $('#isi-main'),
       mainExit    = $('#mainExit'),
-      myScroll;  
-      
+      myScroll;
+
 
   //Assign timeline to window to be able to test.
   window.tl = tl;
@@ -130,7 +131,7 @@ App_banner.fn.step1 = function() {
   // SCROLL
   //
 
-  //Scroll init function. Keep disable options as they 
+  //Scroll init function. Keep disable options as they
   function initScrollBars(){
     myScroll = new IScroll('#isi_wrapper', {
           scrollbars: 'custom',
@@ -143,12 +144,12 @@ App_banner.fn.step1 = function() {
       });
       window.myScroll = myScroll;
       scrollBar = $('.iScrollVerticalScrollbar');
-  }  
+  }
 
   // scroll init
   initScrollBars();
 
-  // Exits Listeners 
+  // Exits Listeners
   mainExit.on('click', App_banner.fn.mainExitHandler);
   $('.pi').on('click', App_banner.fn.piExitHandler);
 
@@ -156,12 +157,23 @@ App_banner.fn.step1 = function() {
 
 //Main Exit Handler
 App_banner.fn.mainExitHandler = function(e) {
-  e.preventDefault(); 
+  e.preventDefault();
   Enabler.exit('Main Exit','http://google.com');
 }
 // Pi Exit handler
 App_banner.fn.piExitHandler = function(e) {
-  e.preventDefault(); 
+  e.preventDefault();
   Enabler.exit('Prescribing Information and Medication Guide','http://google.com');
 }
 
+//SET IDS IN DOM TO GLOBAL VARIABLES
+function IDsToVars() {
+  var allElements = document.getElementsByTagName("id");
+
+  for (var q = 0; q < allElements.length; q++) {
+    var el = allElements[q];
+    if (el.id) {
+      window[el.id] = document.getElementById(el.id);
+    }
+  }
+};

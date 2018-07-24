@@ -1,3 +1,4 @@
+'use strict';
 
  // Following is a SuperClass for your app
 var LTApp = function() {
@@ -67,4 +68,62 @@ LTApp.prototype = {
         url = url.replace(/\)/g, '');
         return url;
     }
+};
+
+/**
+ *
+ * Main Application
+ *
+ **/
+
+function App_banner() {
+	if (App_banner.instance !== undefined) {
+		return App_banner.instance;
+	} else {
+		App_banner.instance = this;
+	}
+	LTApp.call(this);
+	return App_banner.instance;
+}
+App_banner.prototype = new LTApp();
+App_banner.fn = App_banner.prototype;
+
+/**
+ *
+ * Singleton thing
+ *
+ **/
+App_banner.getInstance = function () {
+	if (App_banner.instance === undefined) {
+		new App_banner();
+	}
+	return App_banner.instance;
+}
+
+/**
+ *
+ * Initialize your app, surcharge with whatever needed
+ *
+ **/
+App_banner.fn.init = function () {
+	if (!this.INITED) {
+		this.INITED = true;
+
+		/**
+		 * Add the images url you want to preload in the empty array on the first parameter
+		 */
+		this.preload([], this.display.bind(this));
+	}
+	IDsToVars();
+};
+
+/**
+ *
+ * shows everything, start animating
+ *
+ **/
+App_banner.fn.display = function () {
+	$('body').removeClass('loading');
+	$('body').addClass('loaded');
+	App_banner.fn.anima();
 };

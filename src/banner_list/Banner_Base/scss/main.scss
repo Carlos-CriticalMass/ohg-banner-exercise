@@ -2,10 +2,10 @@ $banner-width: 300px;
 $banner-height: 250px;
 
 @import "../../../styles/main";
-  
 
-.step[data-order="1"] {
-    .absolute-position {  
+
+.wrapper {
+    .absolute-position {
         position: absolute;
     }
 
@@ -32,7 +32,7 @@ $banner-height: 250px;
         font-size: 10px;
         display: block;
         text-align: left;
-    }        
+    }
 }
 
 // ISI styles
@@ -50,7 +50,7 @@ $banner-height: 250px;
 
     * {
         pointer-events: all;
-    }       
+    }
 
     header {
         margin: 0;
@@ -68,7 +68,7 @@ $banner-height: 250px;
     #copy-header {
         border: 1px solid #000;
         padding: 2.5px;
-    } 
+    }
 
 
 }
@@ -80,7 +80,7 @@ $banner-height: 250px;
     width: 100%;
     display: block;
     z-index: 3000;
-    overflow: hidden;     
+    overflow: hidden;
 }
 
 .iScrollVerticalScrollbar {
@@ -91,7 +91,7 @@ $banner-height: 250px;
     width: 3px !important;
     position: absolute;
     z-index: 9999;
-    overflow: visible !important; 
+    overflow: visible !important;
 }
 
 .iScrollIndicator {
@@ -102,7 +102,7 @@ $banner-height: 250px;
     position: absolute;
     background: #003e7e;
     cursor: pointer;
-    display: block !important; 
+    display: block !important;
 }
 
 #isi {
@@ -129,11 +129,11 @@ $banner-height: 250px;
         font-size: 10px;
     }
 
-    .footer { 
+    .footer {
         position: relative;
 
         p {
-            font-size: 10px;    
+            font-size: 10px;
         }
 
         .pfizer-logo{
@@ -145,15 +145,15 @@ $banner-height: 250px;
                 position: static;
             }
         }
-    }          
+    }
 
    .urlIsi {
         color: #000;
         font-size: 9px;
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
-   }   
-} 
+   }
+}
 
 // Extend style for ISI clone
 #isi-clone {

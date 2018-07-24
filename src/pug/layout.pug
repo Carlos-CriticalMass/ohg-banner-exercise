@@ -8,7 +8,7 @@ html.no-js(lang='en')
     link(rel='stylesheet', href='css/styles.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Oswald:500,600|Roboto:300,400,500')
     block metaSize
-    script(src="https://s0.2mdn.net/ads/studio/Enabler.js") 
+    script(src="https://s0.2mdn.net/ads/studio/Enabler.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js")
   body.loading
@@ -41,14 +41,14 @@ html.no-js(lang='en')
           console.log('Polite loading scripts');
 
           //Feed assets for polite loading
-          politeLoad(["https://cdn.flashtalking.com/frameworks/js/gsap/1.17.0/plugins/CSSPlugin.min.js",
-                      "https://cdn.flashtalking.com/frameworks/js/gsap/1.17.0/TweenLite.min.js",
-                      "https://cdn.flashtalking.com/frameworks/js/gsap/1.17.0/TimelineMax.min.js",
-                      "https://cdn.flashtalking.com/frameworks/js/gsap/1.17.0/easing/EasePack.min.js","js/main.js"], pageLoadedHandler);
-        }       
+          politeLoad(["https://s0.2mdn.net/ads/studio/cached_libs/cssplugin_1.20.4_5c12878a0fe9f741c5b72eb26497a737_min.js",
+                      "https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.20.4_42916b5332cef8519c5950778ee2e41d_min.js",
+                      "https://s0.2mdn.net/ads/studio/cached_libs/timelinemax_1.20.4_9578d7e776129679d749ddee3541bbce_min.js",
+                      "https://s0.2mdn.net/ads/studio/cached_libs/easepack_1.20.4_7e44068dd65b1e3f82dec52f780163c8_min.js","js/main.js"], pageLoadedHandler);
+        }
 
-        // Preload assets  
-        function politeLoad(urls, onComplete){    
+        // Preload assets
+        function politeLoad(urls, onComplete){
             var l = urls.length,
                 loaded = 0,
                 checkProgress = function() {
@@ -75,7 +75,6 @@ html.no-js(lang='en')
         function adVisibilityHandler() {
             // Start the animation
             App_banner.getInstance().init();
-        }        
-        
-      })();  
- 
+        }
+
+      })();

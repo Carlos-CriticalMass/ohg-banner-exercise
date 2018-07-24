@@ -1,18 +1,20 @@
-#NUPL16CDLA1112_expandable_rich_media_300x250_to_300x500
+# BASE BANNER OHG
 
 ## Initial set up
+To prepare this project to run, you'll need to have nodejs `v6.1.0` or `up` installed in your computer.
+I suggest to use [NVM](https://github.com/creationix/nvm)  in order to install node and manage diference version easily.
 
-To prepare this project to run, you'll need to have nodejs v6.1.0 or up installed in your computer. I suggest to use [NVM](https://github.com/creationix/nvm) in order to install node and manage diference version easily.
+Run `nvm use`.
 
 Install [editorconfig](http://editorconfig.org/) to keep end lines consistent between editor.
 
-You will also need gulp to run the application, needs to be installed globally. run npm i -g gulp. Depending on your local configuration, you might need run this command with sudo.
+You will also need gulp to run the application, needs to be installed globally. run `npm i -g gulp`. Depending on your local configuration, you might need run this command with `sudo`.
 
-Once you have everything installed, run npm install inside the project folder. This is just for the first time, and what it does is download all the packages it needs to run.
+Once you have everything installed, run `npm install` inside the project folder. This is just for the first time, and what it does is download all the packages it needs to run.
 
 ## Running the project
 
-To run the project simple navigate to the project folder, and run gulp. It will compile all the assets and start a new web server in the 9000 port.
+To run the project simple navigate to the project folder, and run `gulp`. It will compile all the assets and start a new web server in the [9000](http://localhost:9000/) port.
 
 ## Project structure
 All the necessary code is inside the `_src_` folder, but for a better understanding, here's a description of each one:
@@ -20,24 +22,24 @@ All the necessary code is inside the `_src_` folder, but for a better understand
 ```
 root/
 ├── src/                      * Source folder
-├──── 
+├────
 │   ├── banner_list              * Global folder for banners
 │   │  ├── 300x250/              * Folder for this specific size
-│   │      ├── pug/              * The pug folder will be compiled into html
-│   │      │   └── index.pug     * The index file will be our banner file, this uses a common template
+│   │      ├── pug/              * The pug folder will be compiled into html
+│   │      │   └── index.pug     * The index file will be our banner file, this uses a common template
 │   │      │
-│   │      ├── js/               * The custom javascript folder
-│   │      │   └── main.js       * This file should contain all the custom logic for this specific size
+│   │      ├── js/               * The custom javascript folder
+│   │      │   └── main.js       * This file should contain all the custom logic for this specific size
 │   │      │
-│   │      ├── img/              * Images will be copy to the root of the specific size folder
+│   │      ├── img/              * Images will be copy to the root of the specific size folder
 │   │      │
-│   │      └── scss/             * The custom scss folder, will be compiled into css
-│   │         └── main.scss     * This file should contain all the custom styles for this specific size
+│   │      └── scss/             * The custom scss folder, will be compiled into css
+│   │         └── main.scss     * This file should contain all the custom styles for this specific size
 │   │
 │   ├── fonts/                * THe global fonts folder
 │   │
 │   ├── pug/                  * The global pug folder
-│   │   └── layout.pug        * This file contains the layout to be used for all the banners
+│   │   └── layout.pug        * This file contains the layout to be used for all the banners
 │   │
 │   ├── styles/               * This is the global styles folder
 │   │   ├── base/             * Base styles
@@ -46,7 +48,7 @@ root/
 │   │   └── _variables.scss   * The variables file, with sizes, colors, etc
 │   │
 │   └── scripts/              * The global script folder
-│   └── static/               * Backup image, there are required by vendors 
+│   └── static/               * Backup image, there are required by vendors
 │   └── index.html            * Frontpage of banners for review or to show clients
 │
 ├── gulp.js                   * This is the gulp configuration file, with all the paths and jobs declared
@@ -56,7 +58,7 @@ root/
 
 # How to include more sizes
 - Stop gulp
-- Copy and paste one of the existing banner that are inside of the bannerlist folder.
+- Copy and paste one of the existing banner that are inside of the _bannerlist_ folder.
 - Change only the size from the folder name to keep name convetion
 
 ## 1-What if you need jQuery
@@ -65,9 +67,9 @@ called JQlite for more info visit the follow link [JQlite](https://code.google.c
 its included in the plugin.js file.
 
 ```
-│   │   ├── js/            
+│   │   ├── js/
 │   │   │   └── main.js
-│   │   │   └── plugin.js * Line 2 to line 433 
+│   │   │   └── plugin.js * Line 2 to line 433
 
 ```
 
@@ -79,15 +81,19 @@ Go to [CDN](https://cdnjs.com/libraries/jquery) and grab the link of the jquery 
 Then add it to the follow file:
 
 ```
-│   ├── pug/         
-│   │   └── layout.jade
+│   ├── pug/
+│   │   └── layout.pug
 
 ```
 
 ## What if you need another library
-Please find a cdn for it and include in the `_src/jade/layout.jade_` file.
+Please find a cdn for it and include in the `_src/pug/layout.pug_` file.
 
 ## Build
 `gulp distribute`
 
+## Authors
 
+* **Marco Solano** - *Initial work* - GitHub: [Marcotss](https://github.com/Marcotss) - Email: [marcos@thehangar.cr]
+
+For any questions regarding this repository please contact above authors.

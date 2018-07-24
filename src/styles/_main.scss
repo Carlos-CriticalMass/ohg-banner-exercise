@@ -28,13 +28,13 @@ body {
     -moz-tap-highlight-color: rgba(0,0,0,0);
     -moz-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;    
+    -moz-osx-font-smoothing: grayscale;
 }
 
 p {
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .preloader,
@@ -47,8 +47,5 @@ p {
 }
 
 // put your stuff here
-
-@import 'states/white';
-@import 'states/step';
 
 @import 'layouts/centered';

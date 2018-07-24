@@ -1,3 +1,4 @@
+# BASE BANNER OHG
 
 ## Initial set up
 To prepare this project to run, you'll need to have nodejs `v6.1.0` or `up` installed in your computer.

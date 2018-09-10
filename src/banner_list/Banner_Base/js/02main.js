@@ -6,6 +6,8 @@
  **/
 
 App_banner.fn.anima = function() {
+    // isi clone, NOTE: if you want to see a copy of the ISI next to the banner uncomment the follow line
+    // $('#isi').clone().addClass('uat').attr('id', 'isi-clone').appendTo('body');
 
   // Variables
   var tl          = new TimelineMax(),
@@ -15,7 +17,6 @@ App_banner.fn.anima = function() {
       isiMain     = $('#isi-main'),
       mainExit    = $('#mainExit'),
       myScroll;
-
 
   //Assign timeline to window to be able to test.
   window.tl = tl;

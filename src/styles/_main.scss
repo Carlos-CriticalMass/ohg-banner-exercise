@@ -19,7 +19,6 @@ html {
 body {
   width: $banner-width;
   height: $banner-height;
-  // overflow: hidden;
 }
 
 * {
@@ -38,7 +37,7 @@ p {
 }
 
 .preloader,
-.wrapper {
+#wrapper {
   overflow: hidden;
   width: $banner-width;
   height: $banner-height;

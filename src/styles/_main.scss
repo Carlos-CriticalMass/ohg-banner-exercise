@@ -36,6 +36,10 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.preloader {
+  z-index: 1;
+}
+
 .preloader,
 #wrapper {
   overflow: hidden;

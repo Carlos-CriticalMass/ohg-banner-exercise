@@ -12,14 +12,90 @@ App_banner.fn.anima = function() {
   // Variables
   var tl          = new TimelineMax(),
       placeholder = $('.animation-placeholder'),
-      scrollBar,
       isi1        = $('#isi'),
       isiMain     = $('#isi-main'),
       mainExit    = $('#mainExit'),
-      myScroll;
+      myScroll,
+      scrollBar,
+      scrollSpeed,
+      scrolledPercentage,
+      scrollWrapHeight,
+      isiHeight,
+      scrollSetUp,
+      intialScrollSpeed = 90000,
+      animationFinished = false,
+      scrollWrapHeight = isi_wrapper.clientHeight;
 
   //Assign timeline to window to be able to test.
   window.tl = tl;
+
+    //Scroll init function. Keep disable options as they
+    function initScrollBars() {
+      myScroll = new IScroll('#isi_wrapper', {
+        scrollbars: 'custom',
+        interactiveScrollbars: true,
+        resizeScrollbars: false,
+        mouseWheel: true,
+        momentum: true,
+        click: true,
+        disablePointer: true,
+        disableTouch: false,
+        disableMouse: false
+      });
+
+      window.myScroll = myScroll;
+
+      scrollBar = $('.iScrollVerticalScrollbar');
+    }
+
+    function finishedAnimation() {
+      animationFinished = true;
+      startScroll();
+    }
+
+    function startScroll() {
+      scrollWrapHeight = $('#isi_wrapper').outerHeight(),
+      isiHeight = -1 * (isi1.outerHeight() - scrollWrapHeight),
+      intialScrollSpeed = 90000;
+      scrolledPercentage = myScroll.y * 100 / isiHeight,
+      scrollSpeed = intialScrollSpeed - intialScrollSpeed * (scrolledPercentage / 100);
+
+      myScroll.refresh();
+      setTimeout(function () {
+        myScroll.scrollTo(0, isiHeight, scrollSpeed, {
+          fn: function (k) {
+            return k
+          }
+        })
+      }, 300);
+    }
+
+    function stopScroll() {
+      myScroll.isAnimating = false; //stop animation
+    }
+
+    // scroll init
+    initScrollBars();
+
+   scrollSetUp = function (e) {
+      myScroll.scrollBy(0, 0, 1, {
+        fn: function (k) {
+          return k
+        }
+      });
+    }
+
+    scrollBar.mouseenter(function () {
+      scrollSetUp();
+    });
+
+    myScroll.on('scrollStart', function () {
+      if (animationFinished) {
+        if (myScroll.isAnimating) {
+          stopScroll();
+        }
+      }
+    });
 
   //
   //Timeline Animation
@@ -27,27 +103,7 @@ App_banner.fn.anima = function() {
 
   tl.addLabel('frame1', '+=0.5')
     .from(placeholder, 0.6, {x: 500}, 'frame1')
-  //
-  // SCROLL
-  //
 
-  //Scroll init function. Keep disable options as they
-  function initScrollBars(){
-    myScroll = new IScroll('#isi_wrapper', {
-          scrollbars: 'custom',
-          interactiveScrollbars: true,
-          mouseWheel: true,
-          momentum: true,
-          disablePointer:true,
-          disableTouch:false,
-          disableMouse:true
-      });
-      window.myScroll = myScroll;
-      scrollBar = $('.iScrollVerticalScrollbar');
-  }
-
-  // scroll init
-  initScrollBars();
 
   // Exits Listeners
   mainExit.on('click', App_banner.fn.mainExitHandler);

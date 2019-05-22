@@ -104,10 +104,9 @@ App_banner.fn.anima = function() {
   tl.addLabel('frame1', '+=0.5')
     .from(placeholder, 0.6, {x: 500}, 'frame1')
 
-
   // Exits Listeners
   mainExit.on('click', App_banner.fn.mainExitHandler);
-  $('.pi').on('click', App_banner.fn.piExitHandler);
+  $('#wrapper').on('click', App_banner.fn.piExitHandler);
 
 };
 

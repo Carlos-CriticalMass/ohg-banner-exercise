@@ -132,7 +132,18 @@ html.no-js(lang='en')
   body
     block content
   script(type='text/javascript').
-    var iframe = document.getElementById("iframePreview");
-    var elmnt = iframe.contentWindow.document;
-        elmnt.body.style.backgroundColor = "red";
-    console.log(elmnt);
+    $(document).ready(function(){
+
+          $(".btn-link").on( "click", function() {
+            setTimeout(function(){ 
+              var wrap = $('#iframePreview').contents().find("#isi_wrapper").addClass('cloned-isi').clone().appendTo('.card-body');
+
+              console.log(wrap);
+              //- wrap.setAttribute('id','isi-clone');
+              //- this.querySelectorAll('body')[0].appendChild(wrap);
+
+
+
+              }, 1000);
+        });
+    });

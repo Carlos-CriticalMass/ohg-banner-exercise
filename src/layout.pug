@@ -87,6 +87,8 @@ html.no-js(lang='en')
         font-size: 15px;
         float: right;
         color: #007bff;
+        text-transform: uppercase;
+        font-weight: bold;
       }
       .disclaimer {
         text-align: center;
@@ -134,9 +136,10 @@ html.no-js(lang='en')
   script(type='text/javascript').
     $(document).ready(function(){
 
-          $(".btn-link").on( "click", function() {
+          $(".isi-toggle").on( "click", function() {
             setTimeout(function(){ 
-              var wrap = $('#iframePreview').contents().find("#isi_wrapper").addClass('cloned-isi').clone().appendTo('.card-body');
+              var wrap1 = $('#iframePreview').css("cssText", "height: 2220px !important;");
+              var wrap = $('#iframePreview').contents().find("#wrapper, #isi_wrapper, #iframePreview").css("cssText", "height: 2090px !important;");
 
               console.log(wrap);
               //- wrap.setAttribute('id','isi-clone');

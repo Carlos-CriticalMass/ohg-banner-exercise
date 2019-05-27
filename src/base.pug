@@ -24,9 +24,10 @@ block content
                         h5.mb-0
                           button.btn.btn-link(type="button" data-toggle="collapse" data-target="#collapse_"+arraySizes[j] aria-expanded="true" aria-controls="collapse_"+arraySizes[j])
                             span= arraySizes[j]
-                          span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
                     div(id="collapse_"+arraySizes[j] class="collapse" aria-labelledby="heading_"+arraySizes[j] data-parent="#accordionExample")
                       .card-body
+                        span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
+                        button.btn.btn-primary.isi-toggle(type="button") Toggle ISI
                         iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen)#iframePreview
                 -}
             - }

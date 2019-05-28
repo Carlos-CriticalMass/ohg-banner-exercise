@@ -1,8 +1,8 @@
 {
   "name": "Base",
   "version": "1.0.0",
-  "campaign": "proyect-name",
-  "client": "client",
+  "campaign": "Proyect Name",
+  "client": "Client",
   "disclaimer": "OHG Rights Reserved 2019",
   "main": "",
   "scripts": {

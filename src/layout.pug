@@ -25,25 +25,7 @@ html.no-js(lang='en')
               this.contentWindow.location.reload(true);
             }
           });
-
-
         });
-
-        $('#myTabs a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show');
-        });
-
-      //- clone ISI
-        function cloneISI (){
-          if (this.getElementById('isi') != null) {
-              var isi = this.getElementById('isi').cloneNode(true);
-              isi.className += "uat";
-              isi.setAttribute('id', 'isi-clone');
-              this.querySelectorAll('body')[0].appendChild(isi);
-          }
-          return this;
-        }
       });
     style.
       body {
@@ -162,9 +144,7 @@ html.no-js(lang='en')
           $(this).html('Show ISI');
           $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
         }
-
       });
-
     });
 
 

@@ -13,13 +13,20 @@ html.no-js(lang='en')
       $(document).ready(function(){
 
         $(".btn-link").on( "click", function() {
+          var btnLink = $(this);
           $('iframe').each(function() {
             var sizeIframe = $(this).attr('data-size');
-            sizeIframe = sizeIframe.split('x');
-            $(this).height(sizeIframe[1])
-            console.log(sizeIframe);
-            this.contentWindow.location.reload(true);
+            var getIframe = btnLink.attr('data-target');
+            var heightIframe = sizeIframe.split('x');
+            $(this).height(heightIframe[1]);
+            sizeIframe = sizeIframe.substr(sizeIframe.length - 6);
+            getIframe = getIframe.substr(getIframe.length - 6);
+            if(getIframe == sizeIframe){
+              this.contentWindow.location.reload(true);
+            }
           });
+
+
         });
 
         $('#myTabs a').click(function (e) {

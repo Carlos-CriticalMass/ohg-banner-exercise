@@ -46,9 +46,16 @@ p {
   width: $banner-width;
   height: $banner-height;
   background:#ccc;
-  font-family: $primary-font;
+	font-family: $primary-font;
+	transition: 0.3s;
 }
 
+.showISI{
+	iframe{
+		transition: 0.3s;
+	}
+
+}
 // put your stuff here
 
 @import 'layouts/centered';

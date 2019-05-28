@@ -135,18 +135,20 @@ html.no-js(lang='en')
     block content
   script(type='text/javascript').
     $(document).ready(function(){
+      var i = 0;
+      $(".isi-toggle").on("click", function() {
+        $(this).parent('.card-body').toggleClass('showISI');
+        if($('.card-body').hasClass('showISI')){
+          var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
+          $('.showISI iframe').height(iframeHeight + 180);
+          $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
+        }else{
+          $('iframe').removeAttr('style');
+          $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
+        }
 
-          $(".isi-toggle").on( "click", function() {
-            setTimeout(function(){ 
-              var wrap1 = $('#iframePreview').css("cssText", "height: 2220px !important;");
-              var wrap = $('#iframePreview').contents().find("#wrapper, #isi_wrapper, #iframePreview").css("cssText", "height: 2090px !important;");
+      });
 
-              console.log(wrap);
-              //- wrap.setAttribute('id','isi-clone');
-              //- this.querySelectorAll('body')[0].appendChild(wrap);
-
-
-
-              }, 1000);
-        });
     });
+
+

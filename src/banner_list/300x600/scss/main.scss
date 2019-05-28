@@ -5,6 +5,7 @@ $banner-height: 600px;
 
 
 #wrapper {
+		transition:0.3s;
     .absolute-position {
         position: absolute;
     }
@@ -36,7 +37,7 @@ $banner-height: 600px;
 }
 
 // ISI styles
-#isi-main {
+.isi-main {
     width: 100%;
     height: 128px;
     background-color: #fff;
@@ -72,15 +73,18 @@ $banner-height: 600px;
 
 
 }
-
-#isi_wrapper {
+.iframePreview{
+	transition:0.3s;
+}
+.isi_wrapper {
     background-color: #fff;
-    height: 90px!important;
+    height: 447px;
     // min-width: 286px;
     width: 100%;
     display: block;
     z-index: 3000;
-    overflow: hidden;
+		overflow: hidden;
+		transition:0.3s;
 }
 
 .iScrollVerticalScrollbar {
@@ -105,7 +109,7 @@ $banner-height: 600px;
     display: block !important;
 }
 
-#isi {
+.isi {
     width: 269px;
     padding-left: 15px;
     padding-bottom: 20px;
@@ -157,7 +161,7 @@ $banner-height: 600px;
 
 // Extend style for ISI clone
 #isi-clone {
-    @extend #isi;
+    @extend .isi;
     &.uat {
         left: 400px;
         top: 0;

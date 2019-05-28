@@ -12,8 +12,9 @@ App_banner.fn.anima = function() {
   // Variables
   var tl          = new TimelineMax(),
       placeholder = $('.animation-placeholder'),
-      isi1        = $('#isi'),
-      isiMain     = $('#isi-main'),
+      isi1        = $('.isi'),
+			isiMain     = $('.isi-main'),
+			isi_wrapper = $('.isi_wrapper'),
       mainExit    = $('#mainExit'),
       myScroll,
       scrollBar,
@@ -31,7 +32,7 @@ App_banner.fn.anima = function() {
 
     //Scroll init function. Keep disable options as they
     function initScrollBars() {
-      myScroll = new IScroll('#isi_wrapper', {
+      myScroll = new IScroll('.isi_wrapper', {
         scrollbars: 'custom',
         interactiveScrollbars: true,
         resizeScrollbars: false,
@@ -54,7 +55,7 @@ App_banner.fn.anima = function() {
     }
 
     function startScroll() {
-      scrollWrapHeight = $('#isi_wrapper').outerHeight(),
+      scrollWrapHeight = $('.isi_wrapper').outerHeight(),
       isiHeight = -1 * (isi1.outerHeight() - scrollWrapHeight),
       intialScrollSpeed = 90000;
       scrolledPercentage = myScroll.y * 100 / isiHeight,

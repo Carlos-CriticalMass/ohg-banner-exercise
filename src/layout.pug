@@ -14,13 +14,17 @@ html.no-js(lang='en')
 
         $(".btn-link").on( "click", function() {
           $('iframe').each(function() {
-          this.contentWindow.location.reload(true);
+            var sizeIframe = $(this).attr('data-size');
+            sizeIframe = sizeIframe.split('x');
+            $(this).height(sizeIframe[1])
+            console.log(sizeIframe);
+            this.contentWindow.location.reload(true);
           });
         });
 
         $('#myTabs a').click(function (e) {
           e.preventDefault()
-          $(this).tab('show')
+          $(this).tab('show');
         });
 
       //- clone ISI
@@ -34,7 +38,6 @@ html.no-js(lang='en')
           return this;
         }
       });
-
     style.
       body {
         background-color: #f6f6f6;
@@ -44,7 +47,6 @@ html.no-js(lang='en')
         margin: 0 auto;
         border: 0px #ffffff none;
         max-width:100%;
-        min-height: 700px;
       }
       h2 {
         font-family: sans-serif;
@@ -131,6 +133,7 @@ html.no-js(lang='en')
         font-size: 7px;
         line-height: 30px;
       }
+
   body
     block content
   script(type='text/javascript').
@@ -139,11 +142,17 @@ html.no-js(lang='en')
       $(".isi-toggle").on("click", function() {
         $(this).parent('.card-body').toggleClass('showISI');
         if($('.card-body').hasClass('showISI')){
+          $(this).html('Hide ISI');
           var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
           $('.showISI iframe').height(iframeHeight + 180);
           $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
         }else{
-          $('iframe').removeAttr('style');
+          $('iframe').each(function() {
+            var sizeIframe = $(this).attr('data-size');
+            sizeIframe = sizeIframe.split('x');
+            $(this).height(sizeIframe[1]);
+          });
+          $(this).html('Show ISI');
           $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
         }
 

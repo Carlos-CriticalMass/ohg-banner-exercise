@@ -27,8 +27,8 @@ block content
                     div(id="collapse_"+arraySizes[j] class="collapse" aria-labelledby="heading_"+arraySizes[j] data-parent="#accordionExample")
                       .card-body
                         span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
-                        button.btn.btn-primary.isi-toggle(type="button") Toggle ISI
-                        iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner")
+                        button.btn.btn-primary.isi-toggle(type="button") Show ISI
+                        iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner" data-size=""+arraySizes[j])
                 -}
             - }
   .container

@@ -1,223 +1,241 @@
-var fs = require('fs');
-var path = require('path');
-var merge = require('merge-stream');
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var autoprefixer = require('gulp-autoprefixer');
-var plumber = require('gulp-plumber');
-var sourcemaps = require('gulp-sourcemaps');
-var sass = require('gulp-sass');
-var zip = require('gulp-zip');
-var del = require('del');
-var browserSync = require('browser-sync').create();
+var fs = require("fs");
+var path = require("path");
+var merge = require("merge-stream");
+var gulp = require("gulp");
+var rename = require("gulp-rename");
+var uglify = require("gulp-uglify");
+var concat = require("gulp-concat");
+var autoprefixer = require("gulp-autoprefixer");
+var plumber = require("gulp-plumber");
+var sourcemaps = require("gulp-sourcemaps");
+var sass = require("gulp-sass");
+var zip = require("gulp-zip");
+var del = require("del");
+var browserSync = require("browser-sync").create();
 var reload = browserSync.reload;
-var gulpCopy = require('gulp-copy');
-var gulpSequence = require('gulp-sequence');
-var data = require('gulp-data');
-var generateData = require('./generateData');
+var gulpCopy = require("gulp-copy");
+var gulpSequence = require("gulp-sequence");
+var data = require("gulp-data");
+var generateData = require("./generateData");
 
 // Pug Templates
-var pug = require('gulp-pug');
+var pug = require("gulp-pug");
 
 // Image compression
-var imagemin = require('gulp-imagemin');
-var imageminPngquant = require('imagemin-pngquant');
-var imageminJpegRecompress = require('imagemin-jpeg-recompress');
+var imagemin = require("gulp-imagemin");
+var imageminPngquant = require("imagemin-pngquant");
+var imageminJpegRecompress = require("imagemin-jpeg-recompress");
 
 // File paths
-var DIST_PATH = 'dist';
-var SRC_PATH = 'src/banner_list';
-var INDEX_PATH = 'src/';
-var ZIP_PATH = 'dist';
+var DIST_PATH = "dist";
+var SRC_PATH = "src/banner_list";
+var INDEX_PATH = "src/";
+var ZIP_PATH = "dist";
 var FOLDERS = getFolders(SRC_PATH);
 
 // get banners dirs for process
 function getFolders(dir) {
-    return fs.readdirSync(dir)
-        .filter(function(file) {
-            return fs.statSync(path.join(dir, file)).isDirectory();
-        });
+	return fs.readdirSync(dir).filter(function(file) {
+		return fs.statSync(path.join(dir, file)).isDirectory();
+	});
 }
 
-gulp.task('dataJson', generateData);
+gulp.task("dataJson", generateData);
 
 // Static server
-gulp.task('server', function() {
-    browserSync.init({
-        notify: false,
-        port: 9000,
-        reloadDelay: 1000,
-        server: {
-            baseDir: DIST_PATH
-        }
-    });
+gulp.task("server", function() {
+	browserSync.init({
+		notify: false,
+		port: 9000,
+		reloadDelay: 1000,
+		server: {
+			baseDir: DIST_PATH
+		}
+	});
 });
 
 // SASS
-gulp.task('sass', function() {
+gulp.task("sass", function() {
+	console.log(">>>> STARTING STYLES TASK 🖌  <<<<");
 
-    console.log('>>>> STARTING STYLES TASK 🖌  <<<<');
+	var cssTask = FOLDERS.map(function(FOLDERS) {
+		return gulp
+			.src(path.join(SRC_PATH, FOLDERS, "/scss/*.scss"))
+			.pipe(
+				plumber(function(err) {
+					console.log(">>>> STYLES TASK ERROR 💔  <<<<");
+					console.log(err);
+					this.emit("end");
+				})
+			)
+			.pipe(sourcemaps.init())
+			.pipe(
+				autoprefixer({
+					browsers: ["last 3 versions"]
+				})
+			)
+			.pipe(
+				sass({
+					outputStyle: "compressed"
+				})
+			)
+			.pipe(rename("styles.css"))
+			.pipe(gulp.dest(DIST_PATH + "/" + FOLDERS + "/css"))
+			.pipe(browserSync.stream());
+	});
 
-    var cssTask = FOLDERS.map(function(FOLDERS) {
-
-        return gulp.src(path.join(SRC_PATH, FOLDERS, '/scss/*.scss'))
-            .pipe(plumber(function(err) {
-                console.log('>>>> STYLES TASK ERROR 💔  <<<<');
-                console.log(err);
-                this.emit('end');
-            }))
-            .pipe(sourcemaps.init())
-            .pipe(autoprefixer({
-                browsers: ['last 3 versions']
-            }))
-            .pipe(sass({
-                outputStyle: 'compressed'
-            }))
-            .pipe(rename("styles.css"))
-            .pipe(gulp.dest(DIST_PATH + '/' + FOLDERS + '/css'))
-            .pipe(browserSync.stream());
-    });
-
-    return (cssTask);
+	return cssTask;
 });
 
-
 // Scripts
-gulp.task('scripts', function() {
+gulp.task("scripts", function() {
+	console.log(">>>> STARTING SCRIPTS TASK  <<<<");
 
-    console.log('>>>> STARTING SCRIPTS TASK  <<<<');
+	var jsTask = FOLDERS.map(function(FOLDERS) {
+		return gulp
+			.src(path.join(SRC_PATH, FOLDERS, "/js/*.js"))
+			.pipe(
+				plumber(function(err) {
+					console.log("SCRIPTS TASK ERROR");
+					console.log(err);
+					this.emit("end");
+				})
+			)
+			.pipe(sourcemaps.init())
+			.pipe(uglify())
+			.pipe(concat("main.js"))
+			.pipe(gulp.dest(DIST_PATH + "/" + FOLDERS + "/js"));
+	});
 
-    var jsTask = FOLDERS.map(function(FOLDERS) {
-
-        return gulp.src(path.join(SRC_PATH, FOLDERS, '/js/*.js'))
-            .pipe(plumber(function(err) {
-                console.log('SCRIPTS TASK ERROR');
-                console.log(err);
-                this.emit('end');
-            }))
-            .pipe(sourcemaps.init())
-            .pipe(uglify())
-            .pipe(concat('main.js'))
-            .pipe(gulp.dest(DIST_PATH + '/' + FOLDERS + '/js'))
-
-    });
-
-    return (jsTask);
-
+	return jsTask;
 });
 
 // Images
-gulp.task('images', function() {
+gulp.task("images", function() {
+	console.log(">>>> STARTING IMAGES TASK 🖼  <<<<");
 
-    console.log('>>>> STARTING IMAGES TASK 🖼  <<<<');
+	var imgsTask = FOLDERS.map(function(FOLDERS) {
+		return gulp
+			.src(path.join(SRC_PATH, FOLDERS, "/img/*"))
+			.pipe(imagemin())
+			.pipe(gulp.dest(DIST_PATH + "/" + FOLDERS + "/images"));
+	});
 
-    var imgsTask = FOLDERS.map(function(FOLDERS) {
-
-        return gulp.src(path.join(SRC_PATH, FOLDERS, '/img/*'))
-            .pipe(imagemin())
-            .pipe(gulp.dest(DIST_PATH + '/' + FOLDERS + '/images'));
-    });
-
-    return (imgsTask);
+	return imgsTask;
 });
 
-
 // Pug
-gulp.task('templates', function() {
+gulp.task("templates", function() {
+	console.log(">>>> STARTING TEMPLATES TASK 📄  <<<<");
 
-    console.log('>>>> STARTING TEMPLATES TASK 📄  <<<<');
+	var pugTask = FOLDERS.map(function(FOLDERS) {
+		return gulp
+			.src(path.join(SRC_PATH, FOLDERS, "/pug/*.pug"))
+			.pipe(
+				pug({
+					pretty: false
+				})
+			)
+			.pipe(rename("index.html"))
+			.pipe(gulp.dest(DIST_PATH + "/" + FOLDERS));
+	});
 
-    var pugTask = FOLDERS.map(function(FOLDERS) {
-
-        return gulp.src(path.join(SRC_PATH, FOLDERS, '/pug/*.pug'))
-            .pipe(pug({
-                pretty: false
-            }))
-            .pipe(rename("index.html"))
-            .pipe(gulp.dest(DIST_PATH + '/' + FOLDERS));
-
-    });
-
-    return (pugTask);
-})
+	return pugTask;
+});
 
 // Delete dest folder before build
-gulp.task('clean', function() {
+gulp.task("clean", function() {
+	console.log(">>>> STARTING DEL TASK ✂️  <<<<");
 
-    console.log('>>>> STARTING DEL TASK ✂️  <<<<');
-
-    return del.sync([
-        DIST_PATH
-    ]);
+	return del.sync([DIST_PATH]);
 });
 
 // Zip banners per folder
-gulp.task('zips', function() {
+gulp.task("zips", function() {
+	console.log(">>>> STARTING ZIPS TASK 🗜  <<<<");
 
-    console.log('>>>> STARTING ZIPS TASK 🗜  <<<<');
+	var zipTask = FOLDERS.map(function(FOLDERS) {
+		return gulp
+			.src(path.join(ZIP_PATH, FOLDERS, "**/*"))
+			.pipe(zip(FOLDERS + ".zip"))
+			.pipe(gulp.dest(ZIP_PATH + "/" + "ZIPS"));
+	});
 
-    var zipTask = FOLDERS.map(function(FOLDERS) {
-        return gulp.src(path.join(ZIP_PATH, FOLDERS, '**/*'))
-            .pipe(zip(FOLDERS + '.zip'))
-            .pipe(gulp.dest(ZIP_PATH + '/' + 'ZIPS'));
-
-    });
-
-    return (zipTask);
+	return zipTask;
 });
 
 // Generate dinamic index.html for banners
-gulp.task('indexDinamic', function() {
+gulp.task("indexDinamic", function() {
+	console.log(">>>> STARTING DINAMIC INDEX TASK 📄  <<<<");
 
-    console.log('>>>> STARTING DINAMIC INDEX TASK 📄  <<<<');
+	return gulp
+		.src(path.join(INDEX_PATH, "/base.pug"))
 
-        return gulp.src(path.join(INDEX_PATH,'/base.pug'))
-
-            .pipe(data(function(file) {
-                return JSON.parse(fs.readFileSync('./src/data.json'))
-            }))
-            .pipe(pug({
-                pretty: false
-            }))
-            .pipe(rename("index.html"))
-            .pipe(gulp.dest(DIST_PATH));
-
-})
+		.pipe(
+			data(function(file) {
+				return JSON.parse(fs.readFileSync("./src/data.json"));
+			})
+		)
+		.pipe(
+			pug({
+				pretty: false
+			})
+		)
+		.pipe(rename("index.html"))
+		.pipe(gulp.dest(DIST_PATH));
+});
 
 // Copy static folder for distribute
-gulp.task('copy', function () {
-    return gulp.src('src/static/*')
-           .pipe(gulpCopy(DIST_PATH + '/', {
-            prefix: 1,
-           }));
-})
+gulp.task("copy", function() {
+	return gulp.src("src/static/*").pipe(
+		gulpCopy(DIST_PATH + "/", {
+			prefix: 1
+		})
+	);
+});
 
 // Tasks
-gulp.task('build', ['dataJson','images', 'templates', 'sass', 'scripts', 'indexDinamic', 'copy'], function() {});
+gulp.task(
+	"build",
+	[
+		"dataJson",
+		"images",
+		"templates",
+		"sass",
+		"scripts",
+		"indexDinamic",
+		"copy"
+	],
+	function() {}
+);
 
-gulp.task('scaffold', ['images', 'templates', 'sass', 'scripts', 'indexDinamic'], function() {});
+gulp.task(
+	"scaffold",
+	["images", "templates", "sass", "scripts", "indexDinamic"],
+	function() {}
+);
 
-gulp.task('watch', ['scaffold', 'server'], function() {
+gulp.task("watch", ["scaffold", "server"], function() {
+	console.log(">>>> STARTING WATCH TASK 👀  <<<<");
 
-    console.log('>>>> STARTING WATCH TASK 👀  <<<<');
-
-    gulp.watch(SRC_PATH + '/**/scss/*.scss', ['sass', browserSync.reload]);
-    gulp.watch(SRC_PATH + '/**/img/*.{png,jpeg,jpg,svg,gif}', ['images', browserSync.reload]);
-    gulp.watch(SRC_PATH + '/**/pug/*.pug', ['templates', reload]);
-    gulp.watch(INDEX_PATH + '*', ['indexDinamic', reload]);
-    gulp.watch(SRC_PATH + '/**/js/*.js', ['scripts', browserSync.reload]);
+	gulp.watch(SRC_PATH + "/**/scss/*.scss", ["sass", browserSync.reload]);
+	gulp.watch(SRC_PATH + "/**/img/*.{png,jpeg,jpg,svg,gif}", [
+		"images",
+		browserSync.reload
+	]);
+	gulp.watch(SRC_PATH + "/**/pug/*.pug", ["templates", reload]);
+	gulp.watch(INDEX_PATH + "*", ["indexDinamic", reload]);
+	gulp.watch(SRC_PATH + "/**/js/*.js", ["scripts", browserSync.reload]);
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.start('watch');
+gulp.task("default", ["clean"], function() {
+	gulp.start("watch");
 });
 
-gulp.task('distribute', function(cb) {
-  gulpSequence('clean', 'build', function () {
-    setTimeout(function (){
-        gulp.start('zips');
-    }, 4000);
-  });
+gulp.task("distribute", function(cb) {
+	gulpSequence("clean", "build", function() {
+		setTimeout(function() {
+			gulp.start("zips");
+		}, 4000);
+	});
 });

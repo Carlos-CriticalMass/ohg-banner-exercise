@@ -35,7 +35,7 @@ module.exports = function() {
 
   obj = {
     campaign: pkg.campaign,
-    client: pkg.client,
+    advertiser: pkg.advertiser,
     disclaimer: pkg.disclaimer,
     sizes: getDir,
     path: getDirUrl,
@@ -46,7 +46,6 @@ module.exports = function() {
 
   fs.writeFile("./src/data.json", JSON.stringify(data), function(err) {
     if (err) throw err;
-    console.log("complete");
   });
 
   return getDir;

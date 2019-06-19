@@ -105,6 +105,9 @@ html.no-js(lang='en')
             var sizeIframe = $(this).attr('data-size');
             sizeIframe = sizeIframe.split('x');
             $(this).height(sizeIframe[1]);
+            setTimeout(() => { 
+              this.contentWindow.myScroll.refresh();
+            }, 500);
           });
           $(this).html('Show ISI');
           $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');

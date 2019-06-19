@@ -100,6 +100,11 @@ html.no-js(lang='en')
           var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
           $('.showISI iframe').height(iframeHeight + 180);
           $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
+          $('iframe').each(function() {
+            setTimeout(() => { 
+              this.contentWindow.myScroll.refresh();
+            }, 500);
+          });
         }else{
           $('iframe').each(function() {
             var sizeIframe = $(this).attr('data-size');

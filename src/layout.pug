@@ -91,31 +91,31 @@ html.no-js(lang='en')
   body
     block content
   script(type='text/javascript').
-    $(document).ready(function(){
-      var i = 0;
-      $(".isi-toggle").on("click", function() {
-        $(this).parent('.card-body').toggleClass('showISI');
-        if($('.card-body').hasClass('showISI')){
-          $(this).html('Hide ISI');
-          var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
-          $('.showISI iframe').height(iframeHeight + 180);
-          $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
-          $('iframe').each(function() {
-            setTimeout(() => { 
-              this.contentWindow.myScroll.refresh();
-            }, 500);
-          });
-        }else{
-          $('iframe').each(function() {
-            var sizeIframe = $(this).attr('data-size');
-            sizeIframe = sizeIframe.split('x');
-            $(this).height(sizeIframe[1]);
-            setTimeout(() => { 
-              this.contentWindow.myScroll.refresh();
-            }, 500);
-          });
-          $(this).html('Show ISI');
-          $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
-        }
-      });
+    $(document).ready(function () {
+        var i = 0;
+        $(".isi-toggle").on("click", function () {
+            $(this).parent('.card-body').toggleClass('showISI');
+            if ($('.card-body').hasClass('showISI')) {
+                $(this).html('Hide ISI');
+                var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
+                $('.showISI iframe').height(iframeHeight + 180);
+                $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
+                $('iframe').each(function () {
+                    setTimeout(() => {
+                        this.contentWindow.myScroll.refresh();
+                    }, 500);
+                });
+            } else {
+                $('iframe').each(function () {
+                    var sizeIframe = $(this).attr('data-size');
+                    sizeIframe = sizeIframe.split('x');
+                    $(this).height(sizeIframe[1]);
+                    setTimeout(() => {
+                        this.contentWindow.myScroll.refresh();
+                    }, 500);
+                });
+                $(this).html('Show ISI');
+                $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
+            }
+        });
     });

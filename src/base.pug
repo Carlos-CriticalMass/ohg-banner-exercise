@@ -13,24 +13,24 @@ block content
             span.label-preview Click To Preview &cudarrr;
         .tab-content
           .tab-pane.active#concept1(role="tabpanel")
-            div(id="accordionExample").accordion
-            - for(var i = 0; i < info.length; i++) {
-                -var arraySizes = info[i].sizes;
-                -var arrayFileSize = info[i].fileSize;
-                -var arrayPath = info[i].path;
-                -for (var j = 0; j < arraySizes.length && arrayFileSize.length && arrayPath.length; j++) {
-                  .card
-                    div(id="heading_"+arraySizes[j]).card-header
-                        h5.mb-0
-                          button.btn.btn-link(type="button" data-toggle="collapse" data-target="#collapse_"+arraySizes[j] aria-expanded="true" aria-controls="collapse_"+arraySizes[j])
-                            span= arraySizes[j]
-                    div(id="collapse_"+arraySizes[j] class="collapse" aria-labelledby="heading_"+arraySizes[j] data-parent="#accordionExample")
-                      .card-body
-                        span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
-                        button.btn.btn-primary.isi-toggle(type="button") Show ISI
-                        iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner" data-size=""+arraySizes[j])
-                -}
-            - }
+            div(id="accordionBanner").accordion
+              - for(var i = 0; i < info.length; i++) {
+                  -var arraySizes = info[i].sizes;
+                  -var arrayFileSize = info[i].fileSize;
+                  -var arrayPath = info[i].path;
+                  -for (var j = 0; j < arraySizes.length && arrayFileSize.length && arrayPath.length; j++) {
+                    .card
+                      div(id="heading_"+arraySizes[j]).card-header
+                          h5.mb-0
+                            button.btn.btn-link(type="button" data-toggle="collapse" data-target="#collapse_"+arraySizes[j] aria-expanded="false" aria-controls="collapse_"+arraySizes[j])
+                              span= arraySizes[j]
+                      div(id="collapse_"+arraySizes[j] class="collapse" aria-labelledby="heading_"+arraySizes[j] data-parent="#accordionBanner")
+                        .card-body
+                          span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
+                          button.btn.btn-primary.isi-toggle(type="button") Show ISI
+                          iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner" data-size=""+arraySizes[j])
+                  -}
+              - }
   .container
     .col-sm-12
       p.disclaimer= info[0].disclaimer

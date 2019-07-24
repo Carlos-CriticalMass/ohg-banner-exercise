@@ -1,36 +1,26 @@
 extends ../src/layout
 
 block content
-
-  header
   .container.main
     .col-sm-12
-      h2.banner-client= info[0].advertiser
-      h3.banner-name= info[0].campaign
+      header
+        h2.banner-client= info[0].advertiser
+        h3.banner-campaing= info[0].campaign
       .main-container
-        ul.nav.nav-tabs#mytabs(role="tablist")
-          li(role="tablist").tablist
-            span.label-preview Click To Preview &cudarrr;
-        .tab-content
-          .tab-pane.active#concept1(role="tabpanel")
-            div(id="accordionBanner").accordion
-              - for(var i = 0; i < info.length; i++) {
-                  -var arraySizes = info[i].sizes;
-                  -var arrayFileSize = info[i].fileSize;
-                  -var arrayPath = info[i].path;
-                  -for (var j = 0; j < arraySizes.length && arrayFileSize.length && arrayPath.length; j++) {
-                    .card
-                      div(id="heading_"+arraySizes[j]).card-header
-                          h5.mb-0
-                            button.btn.btn-link(type="button" data-toggle="collapse" data-target="#collapse_"+arraySizes[j] aria-expanded="false" aria-controls="collapse_"+arraySizes[j])
-                              span= arraySizes[j]
-                      div(id="collapse_"+arraySizes[j] class="collapse" aria-labelledby="heading_"+arraySizes[j] data-parent="#accordionBanner")
-                        .card-body
-                          span(class="zip-size")= 'zip size: ' + arrayFileSize[j]
-                          button.btn.btn-primary.isi-toggle(type="button") Show ISI
-                          iframe(src="./"+arrayPath[j] name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner" data-size=""+arraySizes[j])
-                  -}
-              - }
-  .container
-    .col-sm-12
-      p.disclaimer= info[0].disclaimer
+        ul.list-names
+          li
+            span.banner-name Banner Name
+            span.zip-sizes Zip Sizes
+            span.backup-image Backup Image
+        ul.banner-list
+          - for(var i = 0; i < info.length; i++) {
+              -var arraySizes = info[i].sizes;
+              -var arrayFileSize = info[i].fileSize;
+              -var arrayPath = info[i].path;
+              -for (var j = 0; j < arraySizes.length && arrayFileSize.length && arrayPath.length; j++) {
+                .li
+                  div(id="heading_"+arraySizes[j]).card-header
+                    a(href="./"+arrayPath[j] target="_blank")= arraySizes[j]
+                    span(class="zip-size")=arrayFileSize[j]
+              -}
+          - }

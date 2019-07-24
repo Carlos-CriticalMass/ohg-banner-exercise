@@ -6,8 +6,11 @@ html.no-js(lang='en')
     title
     meta(name="viewport", content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+    link(href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet")
     link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", crossorigin="anonymous")
+    script(src="https://kit.fontawesome.com/3a14f292e5.js")
+
     script(type='text/javascript').
 
       $(document).ready(function(){
@@ -27,67 +30,60 @@ html.no-js(lang='en')
         });
       });
     style.
-      body {
-        background-color: #f6f6f6;
-      }
-      iframe {
-        display: block;
-        margin: 0 auto;
-        border: 0px #ffffff none;
-        max-width:100%;
-      }
-      h2 {
-        font-family: sans-serif;
-        font-size: 26px;
-        font-weight: 600;
-      }
-      a {
-        color: #000!important;
-        font-size: 15px;
-      }
-      table>tbody>tr>td {
-        padding: 27px 3px!important;
-        border-top: 1px solid #818181 !important;
-        text-align: right;
-      }
-      .main {
-        background-color: #fff;
-        margin-top: 5%;
-      }
-      .banner-client {
-        padding-top: 100px;
-      }
-      .tablist {
-        padding-bottom:10px;
-      }
-      .banner-name {
-        font-family: sans-serif;
-        border-top: 1px solid #fff;
-        font-weight: 300;
-        margin-top: 46px;
-        margin-bottom: 50px;
-      }
-      .banner-size {
-        font-family: sans-serif;
-        font-size: 15px;
-        text-transform: capitalize;
-      }
-      .zip-size {
-        font-family: sans-serif;
-        font-size: 15px;
-        float: right;
-        color: #007bff;
-        text-transform: uppercase;
-        font-weight: bold;
-      }
-      .disclaimer {
-        text-align: center;
-         padding-top: 20px;
-      }
-      .main-container {
-        padding-bottom: 100px;
+      * {
+        font-family: 'Ubuntu', sans-serif;
       }
 
+      header {
+        margin-top: 3%;
+        border-top: 3px solid #007bff;
+      }
+
+      .list-names {
+        list-style: none;
+        padding: 0;
+        background-color: #007bff;
+        color: #ffffff;
+        font-size: 12px;
+      }
+
+      .banner-client {
+        color: #131313;
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: normal;
+        padding: 20px 0 20px 20px;
+      }
+
+      .banner-campaing {
+        font-size: 24px;
+        color: #acacac;
+        padding-left: 20px;
+        padding-bottom: 20px;
+      }
+
+      .banner-name {
+        padding-left: 20px;
+      }
+
+      .backup-image {
+        float: right;
+        padding-right: 40px;
+      }
+
+      .zip-sizes {
+        float: right;
+        padding-right: 20px;
+      }
+
+      .banner-list {
+        padding: 0;
+      }
+
+      .zip-size {
+        color: #007bff;
+        float: right;
+      }
   body
     block content
   script(type='text/javascript').

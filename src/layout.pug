@@ -10,25 +10,6 @@ html.no-js(lang='en')
     link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js", integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", crossorigin="anonymous")
     script(src="https://kit.fontawesome.com/3a14f292e5.js")
-
-    script(type='text/javascript').
-
-      $(document).ready(function(){
-        $(".btn-link").on( "click", function() {
-          var btnLink = $(this);
-          $('iframe').each(function() {
-            var sizeIframe = $(this).attr('data-size');
-            var getIframe = btnLink.attr('data-target');
-            var heightIframe = sizeIframe.split('x');
-            $(this).height(heightIframe[1]);
-            sizeIframe = sizeIframe.substr(sizeIframe.length - 6);
-            getIframe = getIframe.substr(getIframe.length - 6);
-            if(getIframe == sizeIframe){
-              this.contentWindow.location.reload(true);
-            }
-          });
-        });
-      });
     style.
       * {
         font-family: 'Ubuntu', sans-serif;
@@ -84,34 +65,40 @@ html.no-js(lang='en')
         color: #007bff;
         float: right;
       }
+
+      .zip-size:before {
+        font-family: "Font Awesome 5 Pro";
+        content: "\f1c6";
+        padding-right:5px;
+      }
+
+      .banner-name-a:before {
+        font-family: "Font Awesome 5 Pro";
+        content: "\f35d";
+        padding-right:5px;
+        font-weight: 900;
+      }
+
+      .iframe-banner {
+        width: 100%;
+        min-height: 100vh;
+      }
   body
     block content
   script(type='text/javascript').
     $(document).ready(function () {
-        var i = 0;
-        $(".isi-toggle").on("click", function () {
-            $(this).parent('.card-body').toggleClass('showISI');
-            if ($('.card-body').hasClass('showISI')) {
-                $(this).html('Hide ISI');
-                var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
-                $('.showISI iframe').height(iframeHeight + 180);
-                $('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
-                $('iframe').each(function () {
-                    setTimeout(() => {
-                        this.contentWindow.myScroll.refresh();
-                    }, 500);
-                });
-            } else {
-                $('iframe').each(function () {
-                    var sizeIframe = $(this).attr('data-size');
-                    sizeIframe = sizeIframe.split('x');
-                    $(this).height(sizeIframe[1]);
-                    setTimeout(() => {
-                        this.contentWindow.myScroll.refresh();
-                    }, 500);
-                });
-                $(this).html('Show ISI');
-                $('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
-            }
-        });
+      var anchorLink = $('.banner-name-a');
+      var anchorTxt = anchorLink.html();
+
+      anchorLink.click(function(e) {
+        e.preventDefault();
+        var hideElements = $('.banner-list, .list-names');
+        var href = $(this).attr('href');
+        console.log(anchorTxt);
+        //- var sizeIframe = $(this).attr('data-size');
+        //- sizeIframe = sizeIframe.split('x');
+        //- $(this).height(sizeIframe[1]);
+        $('iframe').attr('src', href);
+      });
+
     });

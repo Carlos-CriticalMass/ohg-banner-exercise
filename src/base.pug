@@ -20,7 +20,8 @@ block content
               -for (var j = 0; j < arraySizes.length && arrayFileSize.length && arrayPath.length; j++) {
                 .li
                   div(id="heading_"+arraySizes[j]).card-header
-                    a(href="./"+arrayPath[j] target="_blank")= arraySizes[j]
+                    a(href="./"+arrayPath[j]).banner-name-a= arraySizes[j]
                     span(class="zip-size")=arrayFileSize[j]
               -}
           - }
+        iframe(src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen class="iframe-banner" data-size="")

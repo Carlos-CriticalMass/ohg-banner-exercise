@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/3a14f292e5.js"></script>
+	<title>Banner</title>
+
+	<style>
+		.iframe-banner {
+			width: 100%;
+			min-height: 100vh;
+		}
+		.showISI iframe{
+			transition: 0.3s;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="card mt-3">
+					<div class="card-header">
+						<h3></h3> <button class="btn btn-primary isi-toggle">Show ISI</button>
+					</div>
+					<div class="card-body row">
+						<div class="col-6">
+							<iframe src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen id="iframe-banner" class="iframe-banner" data-size=""></iframe>
+						</div>
+						<div class="col-6">
+							<p><strong>Static</strong></p>
+							<img id="static" src="" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			var i = 0;
+			var url = new URL(window.location.href);
+			var size = url.searchParams.get('size');
+			var title = document.querySelector('h3');
+
+			title.appendChild(document.createTextNode('Banner - ' + size));
+
+			document.getElementById('iframe-banner').src = './' + size;
+
+			document.getElementById('static').src = './' + size + '/images/backup.jpg';
+
+			$(".isi-toggle").on("click", function() {
+				$('.card-body').toggleClass('showISI');
+				if($('.card-body').hasClass('showISI')){
+					$(this).html('Hide ISI');
+					var iframeHeight = $('.showISI iframe').contents().find('.isi').height();
+					$('.showISI iframe').height(iframeHeight + 180);
+					$('.showISI iframe').contents().find('#wrapper, .isi_wrapper, .iframePreview').height(iframeHeight + 170);
+					$('iframe').each(function() {
+						setTimeout(() => {
+							this.contentWindow.myScroll.refresh();
+						}, 500);
+					});
+				}else{
+					$('iframe').each(function() {
+						var sizeIframe = $(this).attr('data-size');
+						sizeIframe = sizeIframe.split('x');
+						$(this).height(sizeIframe[1]);
+						setTimeout(() => {
+							this.contentWindow.myScroll.refresh();
+						}, 500);
+					});
+					$(this).html('Show ISI');
+					$('iframe').contents().find('#wrapper, .iframePreview, .isi_wrapper').removeAttr('style');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

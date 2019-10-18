@@ -43,27 +43,8 @@ html.no-js(lang='en')
         padding-bottom: 20px;
       }
 
-      .banner-name {
-        padding-left: 20px;
-      }
-
-      .backup-image {
-        float: right;
-        padding-right: 40px;
-      }
-
-      .zip-sizes {
-        float: right;
-        padding-right: 20px;
-      }
-
-      .banner-list {
-        padding: 0;
-      }
-
       .zip-size {
         color: #007bff;
-        float: right;
       }
 
       .zip-size:before {
@@ -87,17 +68,13 @@ html.no-js(lang='en')
     block content
   script(type='text/javascript').
     $(document).ready(function () {
-      var anchorLink = $('.banner-name-a');
+      var anchorLink = $('.banner-preview');
       var anchorTxt = anchorLink.html();
 
       anchorLink.click(function(e) {
         e.preventDefault();
         var hideElements = $('.banner-list, .list-names');
         var href = $(this).attr('href');
-        console.log(anchorTxt);
-        //- var sizeIframe = $(this).attr('data-size');
-        //- sizeIframe = sizeIframe.split('x');
-        //- $(this).height(sizeIframe[1]);
         $('iframe').attr('src', href);
       });
 

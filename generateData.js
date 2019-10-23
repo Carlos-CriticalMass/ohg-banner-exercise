@@ -1,9 +1,9 @@
-const pkg = require("./package.json");
-const fs = require("fs");
-const path = require("path");
-const fileBytes = require("file-bytes");
-const prettyBytes = require("pretty-bytes");
-const glob = require("glob");
+import pkg from './package.json';
+import fs from 'fs';
+import path from 'path';
+import fileBytes from 'file-bytes';
+import prettyBytes from 'pretty-bytes';
+import glob from 'glob';
 
 module.exports = function() {
   let SRC_PATH = "src/banner_list";
@@ -33,7 +33,7 @@ module.exports = function() {
   const data = {};
   data.info = [];
 
-  obj = {
+  const obj = {
     campaign: pkg.campaign,
     advertiser: pkg.advertiser,
     disclaimer: pkg.disclaimer,

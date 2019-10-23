@@ -15,8 +15,9 @@ block content
 									span.banner-name Banner Name
 								th(scope="col")
 									span.backup-image Backup Image
-								th(scope="col")
-									span.zip-sizes Zip Sizes
+								if (info[0].fileSize.length)
+									th(scope="col")
+										span.zip-sizes Zip Sizes
 						tbody
 							- for(var i = 0; i < info.length; i++) {
 								-var arraySizes = info[i].sizes;
@@ -28,8 +29,9 @@ block content
 												a(href="./banner.html?size="+arraySizes[j], target="_blank").banner-name-a= arraySizes[j]
 											td
 												a(href="./"+arraySizes[j]+"/images/backup.jpg").backup-image Backup
-											td
-												a(href="./ZIPS/"+arraySizes[j]+".zip", class="zip-size") Download
+											if arrayFileSize.length
+												td
+													span.zip-size= arrayFileSize[j]
 								-}
 							- }
 

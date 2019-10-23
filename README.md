@@ -1,7 +1,7 @@
 # BASE BANNER OHG
 
 ## Initial set up
-To prepare this project to run, you'll need to have nodejs `v10.5.0` or `up` installed in your computer.
+To prepare this project to run, you'll need to have nodejs `v12.13.0` or `up` installed in your computer.
 I suggest to use [NVM](https://github.com/creationix/nvm)  in order to install node and manage diference version easily.
 
 Run `nvm use`.
@@ -14,7 +14,7 @@ Once you have everything installed, run `npm install` inside the project folder.
 
 ## Running the project
 
-To run the project simple navigate to the project folder, and run `gulp`. It will compile all the assets and start a new web server in the [9000](http://localhost:9000/) port.
+To run the project simple navigate to the project folder, and run `npm start` or `gulp`. It will compile all the assets and start a new web server in the [3000](http://localhost:3000/) port.
 
 ## Project structure
 All the necessary code is inside the `_src_` folder, but for a better understanding, here's a description of each one:
@@ -51,7 +51,7 @@ root/
 │   └── static/               * Backup image, there are required by vendors
 │   └── index.html            * Frontpage of banners for review or to show clients
 │
-├── gulp.js                   * This is the gulp configuration file, with all the paths and jobs declared
+├── gulpfile.babel.js                   * This is the gulp configuration file, with all the paths and jobs declared
 ├── generate-index            * Generate list of banner and include in src/index.html
 └── package.json              * What npm uses to manage it's dependencies
 ```
@@ -90,7 +90,7 @@ Then add it to the follow file:
 Please find a cdn for it and include in the `_src/pug/layout.pug_` file.
 
 ## Build
-`gulp distribute`
+`npm run build`
 
 ## Authors
 

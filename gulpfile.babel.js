@@ -87,6 +87,26 @@ export function scripts(done) {
 		.pipe(gulp.dest(`${paths.dist}/${folder}/js`))
 	);
 }
+
+export function scriptsDev(done) {
+	console.log(">>>> STARTING SCRIPTS TASK  <<<<");
+	done();
+
+	return FOLDERS.map(folder => gulp
+		.src(path.join(paths.srcPath, folder, '/js/*.js'))
+		.pipe(babel())
+		.pipe(
+			plumber(function(err) {
+				console.log(">>>> SCRIPTS TASK ERROR 💔 <<<<");
+				console.log(err);
+				this.emit("end");
+			})
+		)
+		.pipe(sourcemaps.init())
+		.pipe(concat("main.js"))
+		.pipe(gulp.dest(`${paths.dist}/${folder}/js`))
+	);
+}
 export function images(done) {
 	console.log(">>>> STARTING IMAGES TASK 🖼 <<<<");
 	done();
@@ -189,18 +209,19 @@ function serve(done) {
 	done();
 }
 
-const initialDev = gulp.series(clean, styles, scripts, images, templates, indexDynamic, bannerView, moveStatic);
+const initialDev = gulp.series(clean, styles, scriptsDev, images, templates, indexDynamic, bannerView, moveStatic);
+const initialBuild = gulp.series(clean, styles, scripts, images, templates, indexDynamic, bannerView, moveStatic);
 
 const watch = () => {
 	console.log(">>>> STARTING WATCH TASK 👀 <<<<");
 	gulp.watch(path.join(paths.srcPath, '/**/*.scss'), gulp.series(styles, reload));
-	gulp.watch(path.join(paths.srcPath, '/**/*.js'), gulp.series(scripts, reload));
+	gulp.watch(path.join(paths.srcPath, '/**/*.js'), gulp.series(scriptsDev, reload));
 	gulp.watch(path.join(paths.srcPath, '/**/img/*.{png,jpeg,jpg,svg,gif}'), gulp.series(images, reload));
 	gulp.watch(`${paths.srcPath}/**/pug/*.pug`, gulp.series(templates, reload));
 	gulp.watch(path.join(paths.indexPath, '/**/*.pug'), gulp.series(indexDynamic, bannerView, reload));
 }
 
-gulp.task('build', gulp.series(dataJson, initialDev));
+gulp.task('build', gulp.series(dataJson, initialBuild));
 
 const dev = gulp.series(dataJson, initialDev, serve, watch);
 

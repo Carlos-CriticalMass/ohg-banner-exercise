@@ -35,12 +35,15 @@ html(lang="en")
 				var url = new URL(window.location.href);
 				var size = url.searchParams.get('size');
 				var title = document.querySelector('h3');
+				var width = size.split('x')[0];
 
 				title.appendChild(document.createTextNode('Banner - ' + size));
 
 				document.getElementById('iframe-banner').src = './' + size;
 
 				document.getElementById('static').src = './' + size + '/images/backup.jpg';
+
+				$('#iframe-banner').css('width', width);
 
 				$('#iframe-banner').on('load', function() {
 					var iframeBody = $(this).contents().find('body');

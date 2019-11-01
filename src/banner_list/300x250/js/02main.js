@@ -12,7 +12,7 @@ App_banner.fn.anima = function () {
 	// Variables
 	var tl = new TimelineMax(),
 		placeholder = $('.animation-placeholder'),
-		isi1 = $('.isi'),
+		isi = $('.isi'),
 		isiMain = $('.isi-main'),
 		isi_wrapper = $('.isi_wrapper'),
 		mainExit = $('#mainExit'),
@@ -25,10 +25,10 @@ App_banner.fn.anima = function () {
 		scrollSetUp,
 		intialScrollSpeed = 90000,
 		animationFinished = false,
-		scrollWrapHeight = isi_wrapper.clientHeight;
-
-	//Assign timeline to window to be able to test.
-	window.tl = tl;
+		scrollWrapHeight = isi_wrapper.clientHeight,
+		scrollToTop = true; // Set to false if you do not need to scroll to the top when the autoscroll finished
+		//Assign timeline to window to be able to test.
+		window.tl = tl;
 
 	//Scroll init function. Keep disable options as they
 	function initScrollBars() {
@@ -56,19 +56,18 @@ App_banner.fn.anima = function () {
 
 	function startScroll() {
 		scrollWrapHeight = $('#isi_wrapper').outerHeight(),
-      isiHeight = -1 * (isi.outerHeight() - scrollWrapHeight),
-      intialScrollSpeed = 90000;
-      scrolledPercentage = myScroll.y * 100 / isiHeight,
-      scrollSpeed = intialScrollSpeed - intialScrollSpeed * (scrolledPercentage / 100);
+			isiHeight = -1 * (isi.outerHeight() - scrollWrapHeight),
+		scrolledPercentage = myScroll.y * 100 / isiHeight,
+			scrollSpeed = intialScrollSpeed - intialScrollSpeed * (scrolledPercentage / 100);
 
-      myScroll.refresh();
-      setTimeout(function () {
-        myScroll.scrollTo(0, isiHeight, scrollSpeed, {
-          fn: function (k) {
-            return k
-          }
-        })
-      }, 300);
+		myScroll.refresh();
+		setTimeout(function () {
+			myScroll.scrollTo(0, isiHeight, scrollSpeed, {
+				fn: function (k) {
+					return k
+				}
+			})
+		}, 300);
 	}
 
 	function stopScroll() {
@@ -86,11 +85,11 @@ App_banner.fn.anima = function () {
 		});
 	}
 
-	isiWrapper.mouseenter(function () {
+	isiMain.mouseenter(function () {
 		stopScroll();
 	});
 
-	isiWrapper.mouseleave(function (e) {
+	isiMain.mouseleave(function (e) {
 		setTimeout(function () { startScroll(); }, 2000);
 	});
 
@@ -117,7 +116,7 @@ App_banner.fn.anima = function () {
 
 	tl.addLabel('frame1', '+=0.5')
 		.from(placeholder, 0.6, { x: 500 }, 'frame1')
-		.add(function() { startScroll(); }, "frame1+=3")
+		.add(function () { finishedAnimation(); }, "frame1+=3")
 
 	// Exits Listeners
 	mainExit.on('click', App_banner.fn.mainExitHandler);
@@ -128,12 +127,12 @@ App_banner.fn.anima = function () {
 //Main Exit Handler
 App_banner.fn.mainExitHandler = function (e) {
 	e.preventDefault();
-	Enabler.exit('Main Exit', 'http://google.com');
+	Enabler.exit('clickTag1', '');
 }
 // Pi Exit handler
 App_banner.fn.piExitHandler = function (e) {
 	e.preventDefault();
-	Enabler.exit('Prescribing Information and Medication Guide', 'http://google.com');
+	Enabler.exit('clickTag2', '');
 }
 
 //SET IDS IN DOM TO GLOBAL VARIABLES

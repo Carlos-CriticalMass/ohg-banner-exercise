@@ -12,7 +12,7 @@ html(lang="en")
 		title Banner
 
 		style(type="text/css").
-			.iframe-banner { width: 100%; min-height: 3000px; }
+			.iframe-banner { width: 100%; }
 			.showISI iframe{	transition: 0.3s; }
 			iframe body {	width: 100%; }
 	body
@@ -26,6 +26,8 @@ html(lang="en")
 							.col
 								iframe(src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen id="iframe-banner" class="iframe-banner" data-size="")
 							.col
+								p
+									a#check-time(href="", target="_blank") Check banner time
 								p
 									strong Static
 								img(id="static" src="")
@@ -43,16 +45,24 @@ html(lang="en")
 
 				document.getElementById('static').src = './' + size + '/images/backup.jpg';
 
+				$('#check-time').attr('href', size);
+
 				$('#iframe-banner').css('width', width);
 
 				$('#iframe-banner').on('load', function() {
 					var iframeBody = $(this).contents().find('body');
-					$(this).contents().find('.isi').clone().appendTo(iframeBody);
+					var fullIframe = document.getElementById('iframe-banner');
 					var isiClone = $(this).contents().find('body > .isi');
+					var banner = $(this).contents().find('body > #wrapper');
+
+					$(iframeBody).append('<h3 style="margin-top:66px;color:#007bff">Full ISI</h3>');
+					$(this).contents().find('.isi').clone().appendTo(iframeBody);
 					iframeBody.css({width: '100%', height: 'inherit'});
 					isiClone.attr('id', 'isi-clone');
 					isiClone.css('float', 'left');
-					var banner = $(this).contents().find('body > #wrapper');
 					banner.css({position: 'relative', marginBottom: '20px'});
+
+					fullIframe.height = '';
+					fullIframe.height = fullIframe.contentWindow.document.body.scrollHeight + 'px';
 				});
 			});

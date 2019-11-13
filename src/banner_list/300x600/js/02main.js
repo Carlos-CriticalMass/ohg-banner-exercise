@@ -124,15 +124,14 @@ App_banner.fn.anima = function () {
 
 };
 
-//Main Exit Handler
 App_banner.fn.mainExitHandler = function (e) {
 	e.preventDefault();
-	Enabler.exit('clickTag1', '');
+	Enabler.exit('clickTag1', clickTag1);
 }
 // Pi Exit handler
 App_banner.fn.piExitHandler = function (e) {
 	e.preventDefault();
-	Enabler.exit('clickTag2', '');
+	Enabler.exit('clickTag2', clickTag2);
 }
 
 //SET IDS IN DOM TO GLOBAL VARIABLES

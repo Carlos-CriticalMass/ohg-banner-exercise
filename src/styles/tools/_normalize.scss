@@ -42,19 +42,19 @@ $color: #000 !default;
 audio,
 canvas,
 video {
-    display: inline-block;
-    @if $legacy_support_for_ie {
-        *display: inline;
-        *zoom: 1;
-    }
+  display: inline-block;
+  @if $legacy_support_for_ie {
+    *display: inline;
+    *zoom: 1;
+  }
 }
 
 // 1. Prevents modern browsers from displaying 'audio' without controls
 // 2. Remove excess height in iOS5 devices
 
 audio:not([controls]) {
-    display: none; // 1
-    height: 0; // 2
+  display: none; // 1
+  height: 0; // 2
 }
 
 //
@@ -63,7 +63,7 @@ audio:not([controls]) {
 //
 
 [hidden], template {
-    display: none;
+  display: none;
 }
 
 // =============================================================================
@@ -76,25 +76,25 @@ audio:not([controls]) {
 //    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
 
 html {
-    @if $legacy_support_for_ie {
-        font-size: 100%; // 1
-    }
-		background: $background;
-		color: $color;
-    -webkit-text-size-adjust: 100%; // 2
-    -ms-text-size-adjust: 100%; // 2
+  @if $legacy_support_for_ie {
+    font-size: 100%; // 1
+  }
+  background: $background;
+  color: $color;
+  -webkit-text-size-adjust: 100%; // 2
+  -ms-text-size-adjust: 100%; // 2
 }
 
 // Addresses font-family inconsistency between 'textarea' and other form elements.
 
 html {
-    font-family: $normalized_font_family;
+  font-family: $normalized_font_family;
 }
 
 // Addresses margins handled incorrectly in IE6/7
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 // =============================================================================
@@ -107,22 +107,22 @@ body {
 //    people.opera.com/patrickl/experiments/keyboard/test
 
 a {
-    // 1
+  // 1
     
-    background: transparent;
+  background: transparent;
 
-    // 2
+  // 2
 
-    &:focus {
-        outline: thin dotted;
-    }
+  &:focus {
+    outline: thin dotted;
+  }
 
-    // 3
+  // 3
 
-    &:hover,
-    &:active {
-        outline: 0;
-    }
+  &:hover,
+  &:active {
+    outline: 0;
+  }
 }
 
 // =============================================================================
@@ -133,35 +133,35 @@ a {
 // Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
 
 @if $normalize_headings == true {
-    h1 {
-        font-size: $h1_font_size;
-        margin: $h1_margin;
-    }
+  h1 {
+    font-size: $h1_font_size;
+    margin: $h1_margin;
+  }
 
-    h2 {
-        font-size: $h2_font_size;
-        margin: $h2_margin;
-    }
+  h2 {
+    font-size: $h2_font_size;
+    margin: $h2_margin;
+  }
 
-    h3 {
-        font-size: $h3_font_size;
-        margin: $h3_margin;
-    }
+  h3 {
+    font-size: $h3_font_size;
+    margin: $h3_margin;
+  }
 
-    h4 {
-        font-size: $h4_font_size;
-        margin: $h4_margin;
-    }
+  h4 {
+    font-size: $h4_font_size;
+    margin: $h4_margin;
+  }
 
-    h5 {
-        font-size: $h5_font_size;
-        margin: $h5_margin;
-    }
+  h5 {
+    font-size: $h5_font_size;
+    margin: $h5_margin;
+  }
 
-    h6 {
-        font-size: $h6_font_size;
-        margin: $h6_margin;
-    }
+  h6 {
+    font-size: $h6_font_size;
+    margin: $h6_margin;
+  }
 }
 
 
@@ -169,22 +169,22 @@ a {
 
 b,
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 // Addresses margins set differently in IE6/7
 @if $legacy_support_for_ie {
-    p,
-    pre {
-        margin: 1em 0;
-    }
+  p,
+  pre {
+    margin: 1em 0;
+  }
 }
 
 
 // Address inconsistent and variable font size in all browsers.
 
 small {
-    font-size: 80%;
+  font-size: 80%;
 }
 
 // Prevents sub and sup affecting line-height in all browsers
@@ -192,18 +192,18 @@ small {
 
 sub,
 sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
 sup {
-    top: -0.5em;
+  top: -0.5em;
 }
 
 sub {
-    bottom: -0.25em;
+  bottom: -0.25em;
 }
 
 
@@ -216,16 +216,16 @@ sub {
 //    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
 
 img {
-    border: 0; // 1
-    @if $legacy_support_for_ie {
-        -ms-interpolation-mode: bicubic; // 2
-    }
+  border: 0; // 1
+  @if $legacy_support_for_ie {
+    -ms-interpolation-mode: bicubic; // 2
+  }
 }
 
 // Corrects overflow displayed oddly in IE9
 
 svg:not(:root) {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 
@@ -236,6 +236,6 @@ svg:not(:root) {
 // Remove most spacing between table cells
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }

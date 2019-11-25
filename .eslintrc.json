@@ -1,0 +1,16 @@
+{
+	"extends": ["eslint:recommended", "google"],
+	"parser": "babel-eslint",
+	"ignorePatterns": ["node_modules/"],
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"node": true
+	},
+	"rules": {
+		"max-len": ["error", {"code": 150}],
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"require-jsdoc": "off",
+		"valid-jsdoc": "off"
+	}
+}

@@ -7,10 +7,10 @@
 /**
  * Base
  */
-@import 'tools/normalize';
+@import "tools/normalize";
 // @import 'base/fonts';
-@import 'base/base';
-@import 'variables';
+@import "base/base";
+@import "variables";
 
 html {
   background: transparent;
@@ -22,12 +22,10 @@ body {
 }
 
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
-    -moz-tap-highlight-color: rgba(0,0,0,0);
-    -moz-tap-highlight-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 p {
@@ -37,8 +35,8 @@ p {
 }
 
 .preloader {
-	z-index: 1;
-	position: absolute;
+  z-index: 1;
+  position: absolute;
 }
 
 .preloader,
@@ -46,16 +44,16 @@ p {
   overflow: hidden;
   width: $banner-width;
   height: $banner-height;
-  background:#ccc;
-	font-family: $primary-font;
-	transition: 0.3s;
+  background: #ccc;
+  font-family: $primary-font;
+  transition: 0.3s;
 }
 
 .showISI{
-	iframe{
-		transition: 0.3s;
-	}
+  iframe{
+    transition: 0.3s;
+  }
 }
 // put your stuff here
 
-@import 'layouts/centered';
+@import "layouts/centered";

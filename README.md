@@ -16,6 +16,8 @@ Once you have everything installed, run `npm install` inside the project folder.
 
 To run the project simple navigate to the project folder, and run `npm start` or `gulp`. It will compile all the assets and start a new web server in the [3000](http://localhost:3000/) port.
 
+> **Note:** We use Pug Lint, please install in Visual Code the extension [puglint](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-puglint)
+
 ## Project structure
 All the necessary code is inside the `_src_` folder, but for a better understanding, here's a description of each one:
 

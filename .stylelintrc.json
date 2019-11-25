@@ -1,0 +1,26 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "color-hex-case": "lower",
+    "color-named": "never",
+    "color-no-invalid-hex": true,
+    "font-family-name-quotes":"always-where-recommended",
+    "string-quotes": "double",
+    "unit-case": "lower",
+    "value-keyword-case": "lower",
+    "value-list-comma-space-after": "always",
+    "value-list-comma-space-before": "never",
+    "value-list-max-empty-lines": 0,
+    "property-case": "lower",
+    "declaration-bang-space-after": "never",
+    "declaration-colon-space-after": "always",
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-shorthand-property-overrides": true,
+    "selector-type-case": "lower",
+    "indentation": 2,
+    "max-empty-lines": [2,{ "ignore": ["comments"]} ],
+    "no-extra-semicolons": true
+  }
+}

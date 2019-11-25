@@ -7,35 +7,77 @@
   "main": "",
   "scripts": {
     "start": "gulp",
-    "build": "gulp build && gulp zips"
+    "build": "gulp build && gulp zips",
+		"precommit": "lint-staged"
   },
   "engines": {
     "node": ">=12.13.0"
+  },
+  "lint-staged": {
+    "./src/**/*.pug": [
+      "./node_modules/pug-lint/bin/pug-lint --fix ./src/**/*.pug",
+      "git add"
+		],
+		"./src/**/*.scss": [
+			"stylelint ./src/**/*.scss --fix",
+			"git add"
+		],
+		"./src/**/*.js": [
+			"eslint ./src/**/*.js --fix",
+			"git add"
+		]
+  },
+  "pugLintConfig": {
+    "extends": "girder"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm test"
+    }
   },
   "author": "marcos@thehangar.cr",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/register": "^7.6.2",
+    "babel-eslint": "^10.0.3",
     "browser-sync": "^2.26.7",
+    "cz-conventional-changelog": "^3.0.2",
     "del": "^5.1.0",
+    "eslint": "^6.7.1",
+    "eslint-config-google": "^0.14.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.0",
     "gulp-copy": "^4.0.1",
     "gulp-data": "^1.2.1",
+    "gulp-eslint": "^6.0.0",
     "gulp-exec": "^4.0.0",
     "gulp-imagemin": "^6.1.1",
     "gulp-plumber": "^1.2.1",
     "gulp-processhtml": "^1.1.0",
     "gulp-pug": "^4.0.1",
+    "gulp-pug-linter": "^1.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.2",
     "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-stylelint": "^10.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.0.1",
+    "husky": "^3.1.0",
     "imagemin-optipng": "^7.1.0",
-    "imagemin-svgo": "^5.1.0"
+    "imagemin-svgo": "^5.1.0",
+    "lint-staged": "^9.4.3",
+    "pug-lint": "^2.6.0",
+    "stylelint": "^12.0.0",
+    "stylelint-scss": "^3.13.0"
   },
   "dependencies": {
     "file-bytes": "^2.0.3",

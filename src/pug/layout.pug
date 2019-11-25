@@ -1,16 +1,16 @@
 doctype html
-html.no-js(lang='en')
+html(lang="en").no-js
   head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
     block title
-    meta(name="viewport", content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
-    link(rel='stylesheet', href='css/styles.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="css/styles.css")
     block metaSize
     script(src="https://s0.2mdn.net/ads/studio/Enabler.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js")
-    script(type='text/javascript').
+    script(type="text/javascript").
      var clickTag1 = "https://www.google.com/";
      var clickTag2 = "https://www.google.com/";
   body.loading
@@ -18,7 +18,7 @@ html.no-js(lang='en')
       div
       div
     block content
-    script(type='text/javascript').
+    script(type="text/javascript").
       (function() {
 
         window.onload = function() {
@@ -41,12 +41,12 @@ html.no-js(lang='en')
 
         function politeInit (){
           console.log('Polite loading scripts');
-
           //Feed assets for polite loading
-          politeLoad(["https://s0.2mdn.net/ads/studio/cached_libs/cssplugin_1.20.4_5c12878a0fe9f741c5b72eb26497a737_min.js",
-                      "https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.20.4_42916b5332cef8519c5950778ee2e41d_min.js",
-                      "https://s0.2mdn.net/ads/studio/cached_libs/timelinemax_1.20.4_9578d7e776129679d749ddee3541bbce_min.js",
-                      "https://s0.2mdn.net/ads/studio/cached_libs/easepack_1.20.4_7e44068dd65b1e3f82dec52f780163c8_min.js","js/main.js"], pageLoadedHandler);
+          politeLoad(['https://s0.2mdn.net/ads/studio/cached_libs/cssplugin_1.20.4_5c12878a0fe9f741c5b72eb26497a737_min.js',
+                      'https://s0.2mdn.net/ads/studio/cached_libs/tweenlite_1.20.4_42916b5332cef8519c5950778ee2e41d_min.js',
+                      'https://s0.2mdn.net/ads/studio/cached_libs/timelinemax_1.20.4_9578d7e776129679d749ddee3541bbce_min.js',
+                      'https://s0.2mdn.net/ads/studio/cached_libs/easepack_1.20.4_7e44068dd65b1e3f82dec52f780163c8_min.js',
+                      'js/main.js'], pageLoadedHandler);
         }
 
         // Preload assets
@@ -76,7 +76,7 @@ html.no-js(lang='en')
 
         function adVisibilityHandler() {
             // Start the animation
-            App_banner.getInstance().init();
+            AppBanner.getInstance().init();
         }
 
       })();

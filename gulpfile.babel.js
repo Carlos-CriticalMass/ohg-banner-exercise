@@ -18,6 +18,7 @@ import zip from 'gulp-zip';
 import imagemin from 'gulp-imagemin';
 import gulpStylelint from 'gulp-stylelint';
 import gulpPugLint from 'gulp-pug-linter';
+import pugLintStylish from 'puglint-stylish';
 import eslint from 'gulp-eslint';
 
 import generateData from './generateData';
@@ -175,8 +176,8 @@ export function lintPug(done) {
   return FOLDERS.map((folder) => gulp
       .src(path.join(paths.srcPath, folder, '/**/*.pug'))
       .pipe(gulpPugLint({
-        reporter: 'default',
         failAfterError: false,
+        reporter: pugLintStylish,
       })));
 }
 export function indexDynamic(done) {

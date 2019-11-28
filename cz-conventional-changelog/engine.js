@@ -128,13 +128,13 @@ module.exports = function(options) {
             return filterSubject(subject);
           }
         },
-        {
-          type: 'input',
-          name: 'body',
-          message:
-            'Provide a longer description of the change: (press enter to skip)\n',
-          default: options.defaultBody
-        },
+        // {
+        //   type: 'input',
+        //   name: 'body',
+        //   message:
+        //     'Provide a longer description of the change: (press enter to skip)\n',
+        //   default: options.defaultBody
+        // },
         {
           type: 'confirm',
           name: 'isBreaking',

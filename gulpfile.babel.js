@@ -174,7 +174,7 @@ export function lintPug(done) {
   console.log('>>>> STARTING LINT PUG TASK 🖌<<<<');
   done();
   return gulp
-      .src(path.join(paths.srcPath, '/**/*.pug'))
+      .src(path.join(paths.indexPath, '/**/*.pug'))
       .pipe(gulpPugLint({
         reporter: pugLintStylish,
       }));

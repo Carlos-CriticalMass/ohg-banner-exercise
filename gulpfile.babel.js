@@ -24,11 +24,11 @@ import eslint from 'gulp-eslint';
 import generateData from './generateData';
 
 const paths = {
-  dist: 'dist',
-  srcPath: 'src/banner_list',
-  indexPath: 'src/',
-  zipPath: 'dist',
-  staticPath: 'src/static/*',
+  dist: './dist',
+  srcPath: './src/banner_list',
+  indexPath: './src/',
+  zipPath: './dist',
+  staticPath: './src/static/*',
 };
 
 const server = browserStync.create();
@@ -173,12 +173,11 @@ export function templates(done) {
 export function lintPug(done) {
   console.log('>>>> STARTING LINT PUG TASK 🖌<<<<');
   done();
-  return FOLDERS.map((folder) => gulp
-      .src(path.join(paths.srcPath, folder, '/**/*.pug'))
+  return gulp
+      .src(path.join(paths.srcPath, '/**/*.pug'))
       .pipe(gulpPugLint({
-        failAfterError: false,
         reporter: pugLintStylish,
-      })));
+      }));
 }
 export function indexDynamic(done) {
   console.log('>>>> STARTING DINAMIC INDEX TASK 📄 <<<<');
@@ -254,14 +253,14 @@ const initialBuild = gulp.series(clean, styles, scripts, images, templates, inde
 
 const watch = () => {
   console.log('>>>> STARTING WATCH TASK 👀 <<<<');
-  gulp.watch(path.join(paths.srcPath, '/**/*.scss'), gulp.series(lintStyles, styles, reload));
+  gulp.watch(path.join(paths.srcPath, '/**/*.scss'), gulp.series(styles, reload));
   gulp.watch(path.join(paths.srcPath, '/**/*.js'), gulp.series(scriptsDev, reload));
   gulp.watch(path.join(paths.srcPath, '/**/img/*.{png,jpeg,jpg,svg,gif}'), gulp.series(images, reload));
-  gulp.watch(`${paths.srcPath}/**/pug/*.pug`, gulp.series(lintPug, templates, reload));
+  gulp.watch(`${paths.srcPath}/**/pug/*.pug`, gulp.series(templates, reload));
   gulp.watch(path.join(paths.indexPath, '/**/*.pug'), gulp.series(indexDynamic, bannerView, reload));
 };
 
-gulp.task('build', gulp.series(dataJson, initialBuild));
+gulp.task('build', gulp.series(dataJson, initialBuild, lintStyles, lintPug));
 
 const dev = gulp.series(dataJson, initialDev, serve, watch);
 

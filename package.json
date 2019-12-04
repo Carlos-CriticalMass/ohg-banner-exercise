@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "./src/**/*.pug": [
-      "./node_modules/pug-lint/bin/pug-lint --fix ./src/**/*.pug",
+      "gulp lintPug",
       "git add"
     ],
     "./src/**/*.scss": [
@@ -26,9 +26,6 @@
       "eslint ./src/**/*.js --fix",
       "git add"
     ]
-  },
-  "pugLintConfig": {
-    "extends": "girder"
   },
   "config": {
     "commitizen": {

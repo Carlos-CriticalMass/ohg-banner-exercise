@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
-		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
-		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap")
-		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
-		script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
-		script(src="https://kit.fontawesome.com/3a14f292e5.js")
-		title Banner
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/3a14f292e5.js")
+    script(src="https://cdn.polyfill.io/v2/polyfill.min.js")
+    title Banner
 
-		style(type="text/css").
-			.iframe-banner { width: 100%; }
-			.showISI iframe{	transition: 0.3s; }
-			iframe body {	width: 100%; }
-	body
-		.container
-			.row
-				.col
-					.card.mt-3
-						.card-header
-							h3
-						.card-body.row
-							.col
-								iframe(src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen id="iframe-banner" class="iframe-banner" data-size="")
-							.col
-								p
-									a#check-time(href="", target="_blank") Check banner time
-								p
-									strong Static
-								img(id="static" src="")
-		script.
-			$(document).ready(function() {
-				var i = 0;
-				var url = new URL(window.location.href);
-				var size = url.searchParams.get('size');
-				var title = document.querySelector('h3');
-				var width = size.split('x')[0];
+    style(type="text/css").
+      .iframe-banner { width: 100%; }
+      .showISI iframe{	transition: 0.3s; }
+      iframe body {	width: 100%; }
+  body
+    .container
+      .row
+        .col
+          .card.mt-3
+            .card-header
+              h3
+            .card-body.row
+              .col
+                iframe(src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen data-size="")#iframe-banner.iframe-banner
+              .col
+                p
+                  a(href="" target="_blank")#check-time Check banner time
+                p
+                  strong Static
+                img(src="")#static
+    script.
+      $(document).ready(function() {
+        var i = 0;
+        var url = new URL(window.location.href);
+        var size = url.searchParams.get('size');
+        var title = document.querySelector('h3');
+        var width = size.split('x')[0];
 
-				title.appendChild(document.createTextNode('Banner - ' + size));
+        title.appendChild(document.createTextNode('Banner - ' + size));
 
-				document.getElementById('iframe-banner').src = './' + size;
+        document.getElementById('iframe-banner').src = './' + size;
 
-				document.getElementById('static').src = './' + size + '/images/backup.jpg';
+        document.getElementById('static').src = './' + size + '/images/backup.jpg';
 
-				$('#check-time').attr('href', size);
+        $('#check-time').attr('href', size);
 
-				$('#iframe-banner').css('width', width);
+        $('#iframe-banner').css('width', width);
 
-				$('#iframe-banner').on('load', function() {
-					var iframeBody = $(this).contents().find('body');
-					var fullIframe = document.getElementById('iframe-banner');
-					var isiClone = $(this).contents().find('body > .isi');
-					var banner = $(this).contents().find('body > #wrapper');
+        $('#iframe-banner').on('load', function() {
+          var iframeBody = $(this).contents().find('body');
+          var fullIframe = document.getElementById('iframe-banner');
+          var isiClone = $(this).contents().find('body > .isi');
+          var banner = $(this).contents().find('body > #wrapper');
 
-					$(iframeBody).append('<h3 style="margin-top:66px;color:#007bff">Full ISI</h3>');
-					$(this).contents().find('.isi').clone().appendTo(iframeBody);
-					iframeBody.css({width: '100%', height: 'inherit'});
-					isiClone.attr('id', 'isi-clone');
-					isiClone.css('float', 'left');
-					banner.css({position: 'relative', marginBottom: '20px'});
+          $(iframeBody).append('<h3 style="margin-top:66px;color:#007bff">Full ISI</h3>');
+          $(this).contents().find('.isi').clone().appendTo(iframeBody);
+          iframeBody.css({width: '100%', height: 'inherit'});
+          isiClone.attr('id', 'isi-clone');
+          isiClone.css('float', 'left');
+          banner.css({position: 'relative', marginBottom: '20px'});
 
-					fullIframe.height = '';
-					fullIframe.height = fullIframe.contentWindow.document.body.scrollHeight + 'px';
-				});
-			});
+          fullIframe.height = '';
+          fullIframe.height = fullIframe.contentWindow.document.body.scrollHeight + 'px';
+        });
+      });

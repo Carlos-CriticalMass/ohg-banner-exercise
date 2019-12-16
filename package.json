@@ -8,27 +8,24 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build && gulp zips",
-		"precommit": "lint-staged"
+    "precommit": "lint-staged"
   },
   "engines": {
     "node": ">=12.13.0"
   },
   "lint-staged": {
     "./src/**/*.pug": [
-      "./node_modules/pug-lint/bin/pug-lint --fix ./src/**/*.pug",
+      "gulp lintPug",
       "git add"
-		],
-		"./src/**/*.scss": [
-			"stylelint ./src/**/*.scss --fix",
-			"git add"
-		],
-		"./src/**/*.js": [
-			"eslint ./src/**/*.js --fix",
-			"git add"
-		]
-  },
-  "pugLintConfig": {
-    "extends": "girder"
+    ],
+    "./src/**/*.scss": [
+      "stylelint ./src/**/*.scss --fix",
+      "git add"
+    ],
+    "./src/**/*.js": [
+      "eslint ./src/**/*.js --fix",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
@@ -75,7 +72,7 @@
     "imagemin-optipng": "^7.1.0",
     "imagemin-svgo": "^5.1.0",
     "lint-staged": "^9.4.3",
-    "pug-lint": "^2.6.0",
+    "puglint-stylish": "^1.0.2",
     "stylelint": "^12.0.0",
     "stylelint-scss": "^3.13.0"
   },

@@ -1,17 +1,17 @@
 /**
  * Vendor
  */
+
 // http://bourbon.io/docs/
 // @import 'bourbon';
 
 /**
  * Base
  */
+
 @import "tools/normalize";
-// @import 'base/fonts';
 @import "base/base";
 @import "variables";
-
 html {
   background: transparent;
 }
@@ -49,11 +49,15 @@ p {
   transition: 0.3s;
 }
 
-.showISI{
-  iframe{
+.showISI {
+  iframe {
     transition: 0.3s;
   }
 }
-// put your stuff here
 
+#main-panel {
+  cursor: pointer;
+}
+
+// put your stuff here
 @import "layouts/centered";

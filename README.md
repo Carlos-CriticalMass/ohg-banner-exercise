@@ -53,7 +53,7 @@ root/
 │   └── static/               * Backup image, there are required by vendors
 │   └── index.html            * Frontpage of banners for review or to show clients
 │
-├── gulpfile.babel.js                   * This is the gulp configuration file, with all the paths and jobs declared
+├── gulpfile.babel.js         * This is the gulp configuration file, with all the paths and jobs declared
 ├── generate-index            * Generate list of banner and include in src/index.html
 └── package.json              * What npm uses to manage it's dependencies
 ```
@@ -61,7 +61,22 @@ root/
 # How to include more sizes
 - Stop gulp
 - Copy and paste one of the existing banner that are inside of the _bannerlist_ folder.
-- Change only the size from the folder name to keep name convetion
+- Change only the size from the folder name to keep name convention
+
+# How to contribute
+1. Install [commitizen](https://github.com/commitizen/cz-cli) `$ sudo npm install --global commitizen`
+1. Add the group of files related to your commit
+1. Create your commit with commitizen `$ git cz`
+1. Fill out the questions in console
+     1. Jira ticket
+     1. Type of change
+     1. Enter the banner size (component or file name)
+     1. Write a short description of your changes
+     1. If there any breaking changes (yes/no)
+        1. Yes: Type a description why this commit is breaking changes
+     1. If we are working with other people in the same project, please aware if this commit affect any open issues
+        1. Enter the JIRA ticket or PR
+     
 
 ## 1-What if you need jQuery
 This Boilerplate for the banners already have included a Tiny JavaScript DOM query library
@@ -97,5 +112,6 @@ Please find a cdn for it and include in the `_src/pug/layout.pug_` file.
 ## Authors
 
 * **Marco Solano** - *Initial work* - GitHub: [Marcotss](https://github.com/Marcotss) - Email: [marcos@thehangar.cr]
+* **Randall Sánchez** - *New Features and Updates* = Github: [rsancheza09](https://github.com/rsancheza09) - Email: [randallgs@thehangar.cr]
 
 For any questions regarding this repository please contact above authors.

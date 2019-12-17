@@ -1,5 +1,5 @@
 {
-	"extends": ["eslint:recommended", "google"],
+	"extends": ["google"],
 	"parser": "babel-eslint",
 	"ignorePatterns": ["node_modules/"],
 	"env": {
@@ -11,6 +11,9 @@
 		"max-len": ["error", {"code": 150}],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
 		"require-jsdoc": "off",
-		"valid-jsdoc": "off"
+		"valid-jsdoc": "off",
+		"indent": ["error", 4],
+		"object-curly-spacing": ["error", "always"],
+		"eol-last": ["error", "always"]
 	}
 }

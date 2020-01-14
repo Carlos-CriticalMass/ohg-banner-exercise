@@ -12,6 +12,8 @@ You will also need gulp to run the application, needs to be installed globally. 
 
 Once you have everything installed, run `npm install` inside the project folder. This is just for the first time, and what it does is download all the packages it needs to run.
 
+> **Recommendation:** Install in your Visual Studio Code, [PugLint](https://github.com/mrmlnc/vscode-puglint), [EsLint](https://github.com/Microsoft/vscode-eslint) and [StyleLint](https://github.com/stylelint/vscode-stylelint)
+
 ## Running the project
 
 To run the project simple navigate to the project folder, and run `npm start` or `gulp`. It will compile all the assets and start a new web server in the [3000](http://localhost:3000/) port.

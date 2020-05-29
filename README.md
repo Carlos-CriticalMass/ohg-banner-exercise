@@ -60,6 +60,11 @@ root/
 └── package.json              * What npm uses to manage it's dependencies
 ```
 
+# Name Convention
+The folder name must have the size of the banner at the beginning of the name convention
+
+> **Recommendation:** 300x250-BASE-BANNER
+
 # How to include more sizes
 - Stop gulp
 - Copy and paste one of the existing banner that are inside of the _bannerlist_ folder.

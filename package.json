@@ -1,9 +1,9 @@
 {
   "name": "Base",
   "version": "1.0.0",
-  "campaign": "Campaing",
+  "campaign": "Campaign",
   "advertiser": "Advertiser",
-  "disclaimer": "OHG Rights Reserved 2019",
+  "disclaimer": "OHG Rights Reserved 2020",
   "main": "",
   "scripts": {
     "start": "gulp",

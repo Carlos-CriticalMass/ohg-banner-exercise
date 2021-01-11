@@ -16,6 +16,7 @@ html(lang="en")
       .iframe-banner { width: 100%; }
       .showISI iframe{	transition: 0.3s; }
       iframe body {	width: 100%; }
+      .size-728 > .col { flex-basis: auto; }
   body
     .container
       .row
@@ -28,9 +29,9 @@ html(lang="en")
                 iframe(src="" name="myiFrame" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" allowfullscreen data-size="")#iframe-banner.iframe-banner
               .col
                 p
-                  a(href="" target="_blank")#check-time Check banner time
+                  a(href="" target="_blank")#check-time Check banner / review time
                 p
-                  strong Static
+                  strong Static backup image
                 img(src="")#static
     script.
       $(document).ready(function() {
@@ -38,9 +39,10 @@ html(lang="en")
         var url = new URL(window.location.href);
         var size = url.searchParams.get('size');
         var title = document.querySelector('h3');
-        var width = size.split('x')[0];
+        var sizeRegex = /([\d]{3})x[\d]{2,3}/g;
+        var width = size.match(sizeRegex)[0].split('x')[0];
 
-        title.appendChild(document.createTextNode('Banner - ' + size));
+        title.appendChild(document.createTextNode('Banner Preview - ' + size));
 
         document.getElementById('iframe-banner').src = './' + size;
 
@@ -48,6 +50,9 @@ html(lang="en")
 
         $('#check-time').attr('href', size);
 
+        if (width === '728') {
+          $('.card-body').addClass('size-728');
+        }
         $('#iframe-banner').css('width', width);
 
         $('#iframe-banner').on('load', function() {

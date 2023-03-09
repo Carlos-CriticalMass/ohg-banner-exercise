@@ -28,26 +28,14 @@ const animation = {
         // Timeline Animation
         //
         self.tl.addLabel('frame1', '+=0.5')
-            .to(product, 1, { x: 280 }, 'frame1')
-            .to(pinkBG, 1, { x: -60 }, 'frame1')
-            .to(text1, 1, { opacity: 0 }, 'frame1+=1')
-            // Movemos 2 imagenes (product y pink) a derecha
-            .to(product, 1, { x: 440 }, 'frame1+=2')
-            .to(pinkBG, 1, { x: 90 }, 'frame1+=2')
-            // Aparecemos 2 texts
-            .to(text2, 1, { opacity: 1 }, 'frame1+=3')
-            .to(text3, 1, { opacity: 1 }, 'frame1+=3')
-            // Desaparece 1 y aparece boton
-            .to(text3, 1, { opacity: 0 }, 'frame1+=6')
-            .to(cta, 1, { opacity: 1 }, 'frame1+=7')
-            // Abrimos pinkBG a todo banner
-            .to(pinkBG, 1, { scaleX: 8 }, 'frame1+=9')
+            .from(placeholder, 0.6, {
+                x: 500,
+            }, 'frame1')
             .add(function() {
                 finishedAnimation();
-            }, 'frame1+=10');
+            }, 'frame1+=3');
     },
 };
-
 
 const isi = {
     config: {
@@ -183,5 +171,3 @@ AppBanner.fn.piExitHandler = function(e) {
     e.preventDefault();
     Enabler.exit('clickTag2', clickTag2);
 };
-
-
